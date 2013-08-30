@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Soap Test</title>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.js" type="text/javascript"></script>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.class.js" type="text/javascript"></script>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.cookie.js" type="text/javascript"></script>
+	<link  href="${pluginsBaseRootUrl}/web.shared/elvis_api/css/elvis.css" rel="stylesheet" type="text/css"/>
+	<script src="${pluginsBaseRootUrl}/web.shared/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>
+	<script src="jquery.soap.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" language="JavaScript">
+
+// Original selected image Id;
+var assetId = 'A2prCCiCajvBS494sqLFO9';
+
+// Asset id of the newly imported variation image
+var variationAssetId = 'AtbKVrRDK5h9LYtazvYlBw';
+
+var enterpriseEndpoint = 'http://127.0.0.1:8888/Enterprise/index.php'; 
+ 
+function doSoapCall(endPointUrl, soapXML, successHandler) {
+	$.ajax({
+		url: endPointUrl,
+		data: soapXML,
+		type: "POST",
+		dataType: "xml",
+		success:  successHandler,
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert("An error occurred: " + textStatus + ":\n" + errorThrown);
+		}
+	});
+}
+
+function login() {
+	var logOnReq = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SmartConnection">\n'+
+	'   <soap:Header/>\n'+
+	'   <soap:Body>\n'+
+	'      <urn:LogOn>\n'+
+	'         <User>woodwing</User>\n'+
+	'         <Password>ww</Password>\n'+
+	'         <Ticket></Ticket>\n'+
+	'         <Server></Server>\n'+
+	'         <ClientName></ClientName>\n'+
+	'         <Domain></Domain>\n'+
+	'         <ClientAppName></ClientAppName>\n'+
+	'         <ClientAppVersion></ClientAppVersion>\n'+
+	'         <ClientAppSerial></ClientAppSerial>\n'+
+	'         <ClientAppProductKey></ClientAppProductKey>\n'+
+	'         <RequestTicket></RequestTicket>\n'+
+	'      </urn:LogOn>\n'+
+	'   </soap:Body>\n'+
+	'</soap:Envelope>';
+	
+	// Login to Enterprise
+	doSoapCall(enterpriseEndpoint, logOnReq, function(data, textStatus, jqXHR) {
+		var xmlDoc = $.parseXML(jqXHR.responseText);
+		$xml = $(xmlDoc);
+		var ticket = $xml.find("Ticket").text();
+		
+		// Retrieve the dossiers
+		getDossiers(ticket);
+	});
+}
+
+function getDossiers(ticket) {
+	
+	var enterpriseId = '_ELVIS_' + assetId;
+	
+	var getObjectsReq = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SmartConnection" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n'+
+	'	<soap:Header/>\n'+
+	'	<soap:Body>\n'+
+	'		<urn:GetObjects>\n'+
+	'			<Ticket>' + ticket + '</Ticket>\n'+
+	'			<IDs>\n'+
+	'				<String>' + enterpriseId + '</String>\n'+
+	'			</IDs>\n'+
+	'		</urn:GetObjects>\n'+
+	'	</soap:Body>\n'+
+	'</soap:Envelope>';
+	
+	doSoapCall(enterpriseEndpoint, getObjectsReq, function(data, textStatus, jqXHR) {
+		var xmlDoc = $.parseXML(jqXHR.responseText);
+		$xml = $(xmlDoc);
+		
+		// Loop through relations and search for dossiers
+		$xml.find('Relation').each(function() {
+		
+			var type = $(this).children('Type').text();
+			var parentInfoType = $(this).find('ParentInfo > Type').text();
+			
+			if (type === 'Contained' && parentInfoType === 'Dossier') {
+			
+				// Dossier found, add new asset (variation) to the dossier
+				var dossierId = $(this).find('ParentInfo > ID').text();
+				addAssetToDossier(ticket, dossierId);
+			}
+		});
+	});
+}
+
+function addAssetToDossier(ticket, dossierId) {
+	
+	var enterpriseId = '_ELVIS_' + variationAssetId;
+
+	var createObjectRelationsReq = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SmartConnection" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n'+
+	'	<soap:Header/>\n'+
+	'	<soap:Body>\n'+
+	'		<urn:CreateObjectRelations>\n'+
+	'			<Ticket>' + ticket + '</Ticket>\n'+
+	'			<Relations>\n'+
+	'				<Relation>\n'+
+	'					<Parent>' + dossierId + '</Parent>\n'+
+	'					<Child>' + enterpriseId + '</Child>\n'+
+	'					<Type>Contained</Type>\n'+
+	'					<Placements />\n'+
+	'					<ParentVersion />\n'+
+	'					<ChildVersion />\n'+
+	'					<Geometry />\n'+
+	'					<Rating />\n'+
+	'					<Targets />\n'+
+	'				</Relation>\n'+
+	'			</Relations>\n'+
+	'		</urn:CreateObjectRelations>\n'+
+	'	</soap:Body>\n'+
+	'</soap:Envelope>';
+
+	doSoapCall(enterpriseEndpoint, createObjectRelationsReq, function(data, textStatus, jqXHR) {
+		var xmlDoc = $.parseXML(jqXHR.responseText);
+		$xml = $(xmlDoc);
+		
+		var parentId = $xml.find('Relation > Parent').text();
+		var childId = $xml.find('Relation > Child').text();
+		
+		if (!parentId || !childId) {
+			alert('Failed to create relation');
+		}
+		else {
+			alert('Created relation between dossier "' + parentId + '" and asset "' + childId + '"');
+		}
+	});
+}
+
+login();
+
+	</script>
+</head>
+
+<body style="background-color: #FFFFFF;">
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<title>Image Annotation Tool In Javascript</title>
+<script src="js/jquery.min.js"></script>
+<script src='js/fnFactory.js'></script>
+<style>
+.tools { margin-bottom: 10px; }
+      .tools a {
+        border: 1px solid black; height: 30px; line-height: 30px; padding: 0 10px; vertical-align: middle; text-align: center; text-decoration: none; display: inline-block; color: black; font-weight: bold;
+      }
+</style>
+</head>
+<body>
+<article class='example' id='tools_demo'>
+  <div class='demo'>
+    <div class='tools'>
+    	<a href="#tools_fn" data-download="png" >Download</a>
+    </div>
+    <script type='text/javascript'>
+            $(function() {
+              $('#tools_fn').sketch();
+            });
+    </script> 
+  </div>
+</article>
+</body>
+</html>

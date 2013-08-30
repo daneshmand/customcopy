@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<info>
+		<version>
+			<pluginVersion>1.0</pluginVersion>
+			<requiresAtLeast>4.0.1.741</requiresAtLeast>
+		</version>
+		<description>Custom Copy</description>
+	</info>
+	<action>
+		<url>${pluginUrl}/index.html</url>
+		<icon16Url>${pluginUrl}/images/icons/duplicate_icon16.png</icon16Url>
+		<icon24Url>${pluginUrl}/images/icons/duplicate_icon24.png</icon24Url>
+
+		<userInterface>
+                        <dialog width="640" height="550"/>
+		</userInterface>
+
+		<menuAssignments>
+			<menuAssignment id="assetContextMenu" order="1"/>
+                        <menuAssignment id="toolBar" order="1"/>
+
+		</menuAssignments>
+
+		<messages>
+			<entries locale="en_US">
+				<entry key="title">Custom Copy</entry>
+                                <entry key="button.label">Custom Copy</entry>
+				<entry key="button.tooltip">Copy an asset from a custom location to custom location at Elvis and update all metadata</entry>
+			</entries>
+		</messages>
+
+	</action>
+</plugin>

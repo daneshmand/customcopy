@@ -1,0 +1,156 @@
+.main{
+	color:#000;
+}
+.table_small{
+	color:#000;
+	width:100%;
+}
+
+.table_cell_small_left_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_left_top.png);
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 15px;
+}
+.table_cell_small_mid_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_mid_top.png);
+	background-repeat: repeat-x;
+	height: 11px;
+}
+.table_cell_small_right_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_right_top.png);
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 15px;
+}
+.table_cell_small_left_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_left_mid.png);
+	background-repeat:  repeat-y;
+	height: 11px;
+	width: 15px;
+}
+.table_cell_small_mid_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_mid_mid.png);
+	background-repeat: repeat;
+	height: 11px;
+	width: 100%;
+}
+.table_cell_small_right_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_right_mid.png);
+	background-repeat: repeat-y;
+	height: 11px;
+	width: 15px;
+}
+.table_cell_small_left_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_left_buttom.png);
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 15px;
+}
+.table_cell_small_mid_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_mid_buttom.png);
+	background-repeat: repeat-x;
+	height: 11px;
+}
+.table_cell_small_right_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_small_right_buttom.png);
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 15px;
+}
+
+
+.table_big{
+	color:#000;
+	width:100%;
+}
+.table_cell_big_left_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_left_top.png);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_mid_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_mid_top.png);
+	background-repeat: repeat-x;
+	height: 35px;
+}
+.table_cell_big_right_top {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_right_top.png);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_left_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_left_mid.png);
+	background-repeat:  repeat-y;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_mid_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_mid_mid.png);
+	background-repeat: repeat;
+	height: 35px;
+	width: 100%;
+}
+.table_cell_big_right_mid {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_right_mid.png);
+	background-repeat: repeat-y;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_right_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_right_buttom.png);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_mid_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_mid_buttom.png);
+	background-repeat: repeat-x;
+	height: 35px;
+}
+.table_cell_big_left_buttom {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_left_buttom.png);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 32px;
+}
+.table_cell_big_right_buttom_b {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_right_buttom_b.png);
+	background-repeat: no-repeat;
+	height: 62px;
+	width: 32px;
+}
+.table_cell_big_mid_buttom_b {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_mid_buttom_b.png);
+	background-repeat: repeat-x;
+	height: 62px;
+}
+.table_cell_big_left_buttom_b {
+	background-color: #000;
+	background-image: url(../../../images/borders/table_cell_big_left_buttom_b.png);
+	background-repeat: no-repeat;
+	height: 62px;
+	width: 32px;
+}
