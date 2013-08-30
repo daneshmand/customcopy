@@ -479,7 +479,7 @@ var AssetPermissions = {
  * oldTODO explain how to setup and customize...
 
 // Setup path to locate /images/document_*.png
-HitRenderer.resources = "shared_resources/elvis_api";
+HitRenderer.src = "shared_resources/elvis_api";
 
 // Create a hitRenderer instance and configure it
 var hitRenderer = new HitRenderer();
@@ -545,7 +545,7 @@ var HitRenderer = $.Class({
 		this.pageClick = null;
 		this.selectionChange = null;
 
-		// Resolve HitRenderer.resources if not explicitly configured
+		// Resolve HitRenderer.src if not explicitly configured
 		if (!HitRenderer.resources) {
 			var elvisApiUrl = "${pluginsBaseRootUrl}/web.shared/elvis_api";
 			if (elvisApiUrl.indexOf("$") == 0) {
