@@ -1,111 +1,69 @@
 
 function retrieveOriginalObjectProperties(){
 
-    setRetrieveOriginalObjectPropertiesStartProperties();
-    runRetrieveOriginalObjectPropertiesProcess();
-    setRetrieveOriginalObjectPropertiesEndProperties();
+    setRetrieveOriginalObjectPropertiesStartProperties(Properties) ;
 
     return Properties;
-
 }
 
-function setRetrieveOriginalObjectPropertiesStartProperties(){
+function setRetrieveOriginalObjectPropertiesStartProperties(prop){
 
-    Properties.step =  "retrieveOriginalObjectProperties";
+    prop.step =  "retrieveOriginalObjectProperties";
+    prop.title = "Copy | Elvis";
+//    prop.title_src = "Source";
+//    prop.title_dest = "Destination";
+    prop.check_boxes = '\
+<br><input class="check_box_dossier" type="checkbox" value=TRUE name="check_box_dossier"> Select same dossier to copy new asset\
+<br><input class="check_box_collection" type="checkbox" value=FALSE name="check_box_collection"> Update collections\
+<br><input class="rawCheck_box_metadata" type="checkbox" value=TRUE name="rawCheck_box_metadata"> Update Metadata\
+';
+    prop.title_ldbar = "Copy | Elvis";
 
-    Properties.title = "Copy | Elvis";
-    Properties.title_src = "Source";
-    Properties.title_dest = "Destination";
-    Properties.title_ldbar = "Copy | Elvis";
+    prop.nav_buttons = "";
+    prop.dest_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
+    prop.src_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
 
-    Properties.nav_buttons = "";
-    Properties.dest_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
-    Properties.src_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
-
-    console.log("PLUGIN_TYPE: " + PLUGIN_TYPE);
-
-    setLdbarHtmlStarted();
-    Properties.ldbar_html = ldbar_html;
-
-
+    setView(setLdbarHtmlStarted(prop));
+    runRetrieveOriginalObjectPropertiesProcess(prop);
 }
 
-function runRetrieveOriginalObjectPropertiesProcess(){
+function runRetrieveOriginalObjectPropertiesProcess(prop){
     //todo clean runRetrieveOriginalObjectPropertiesProcess
 
     var selectedHits = ElvisPlugin.resolveElvisContext().activeTab.assetSelection;
         if (selectedHits.length == 0) {
-            alert("Selection is empty. Select one or more images or a collection of images from the Elvis Desktop client.");
-            Properties.originalAssetMetadata = "<span style=\'color: #F00\'>No Asset is selected at Elvis</span>";
-            Properties.originalAssetPath = "<span style=\'color: #F00\'>No Path is defined</span>";
+            //alert("Selection is empty. Select one or more images or a collection of images from the Elvis Desktop client.");
+
+            prop = setLdbarHtmlError(prop,"<span style=\'color: #e8e8e8; font-style: italic \'>Check it! Seems you forget to select an asset at Elvis list. Close current popup windows and select one or more images or a collection of images from the Elvis Desktop client. Good luck!</span>");
+            setView(prop);
+            callbacks.disable();
+
+        }else{
+            var query = ElvisPlugin.queryForSelection(selectedHits);
+            prop.nav_buttons = JSON.stringify(query);
+
+            var amd;
+            elvisApi.search({
+                q: query,
+                num: selectedHits.length
+            }, function(data) {
+                amd = data.hits[0].metadata;
+
+                prop = setLdbarHtmlInProcess(prop,"Retrieving original asset meta data in process ... Please wait! ");
+                prop = setSrcPath(prop,amd.assetPath);
+                prop = setDestPath(prop,amd.assetPath);
+                setView(prop);
+                setRetrieveOriginalObjectPropertiesEndProperties(prop);
+
+            });
         }
-    var query = ElvisPlugin.queryForSelection(selectedHits);
-    Properties.nav_buttons = JSON.stringify(query);
-
-    function searchElvis(callback){
-
-        elvisApi.search({
-            q: query,
-            num: selectedHits.length
-        }, function(data) {
-
-            var amd = data.hits[0].metadata;
-            alert("assetPath Object map: " + amd.assetPath);
-
-            callback(amd);
-
-        });
-
-    }
-    searchElvis(function(amd){
-
-        alert("amd from searchElvis: " + JSON.stringify(amd));
-//        Properties.originalAssetPath = amd.assetPath;
-
-        MyTemp = "Test from Inside search elvis";
-        setOriginalAssetMetadata(MyTemp);
-
-    });
-    function setOriginalAssetMetadata(){
-
-        alert("amd from setOriginalAssetMetadata: " + amd);
-        Properties.originalAssetPath = MyTemp;
-
-        setSrcPath();
-        setDestPath();
-    }
-
 }
 
-function setRetrieveOriginalObjectPropertiesEndProperties(){
+function setRetrieveOriginalObjectPropertiesEndProperties(prop){
 
-    var message_ldbar = "All required Data is retrieved" ;
+    prop = setLdbarHtmlInProcess(prop,"Cool, all required data is retrieved.");
+    setView(prop);
 
-    //setLdbarHtmlInProcess(message_ldbar);
-    Properties.ldbar_html =  ldbar_html;
-
+    Properties = prop;
+    return prop;
 }
-
-
-
-
-/*
-
-You've got the selection in the elvisContext. Use the selection to build a new search on the selected assetId's to retrieve all required metadata.
-
-
-var selectedHits = ElvisPlugin.resolveElvisContext().activeTab.assetSelection;
-if (selectedHits.length == 0) {
-    alert("Selection is empty. Select one or more images or a collection of images from the Elvis Desktop client.");
-}
-
-var query = ElvisPlugin.queryForSelection(selectedHits);
-
-elvisApi.search({
-    q: query,
-    num: selectedHits.length
-}, function(data) {
-    // data.hits contains the hits with all metadata (data.hits[0].metadata)
-});
-
- */

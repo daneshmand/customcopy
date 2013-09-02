@@ -42,11 +42,17 @@ Properties.prototype = {
     getStep: function(){
         return this.step;
     },
-    getOriginalAssetMetadata: function(){
-        return this.originalAssetMetadata;
+    getCheck_boxes: function(){
+        return this.check_boxes;
     },
-    getOriginalAssetPath: function(){
-        return this.originalAssetPath;
+    getCheck_box_dossier: function(){
+        return this.check_box_dossier;
+    },
+    getCheck_box_collection: function(){
+        return this.check_box_collection;
+    },
+    getCheck_box_metadata: function(){
+        return this.check_box_metadata;
     }
 
 }
@@ -122,17 +128,29 @@ var Properties = Object.create(Properties.prototype, {
         get: function ()      { return this.rawStep;  },
         set: function (value) { this.rawStep = value; }
     },
-    rawOriginalAssetMetadata: { writable: true, configurable:true, value:null },
-    originalAssetMetadata: {
+    rawCheck_boxes: { writable: true, configurable:true, value:null },
+    check_boxes: {
         configurable:true,
-        get: function ()      { return this.rawOriginalAssetMetadata;  },
-        set: function (value) { this.rawOriginalAssetMetadata = value; }
+        get: function ()      { return this.rawCheck_boxes;  },
+        set: function (value) { this.rawCheck_boxes = value; }
     },
-    rawOriginalAssetPath: { writable: true, configurable:true, value:null },
-    originalAssetPath: {
+    rawCheck_box_dossier: { writable: true, configurable:true, value:null },
+    check_box_dossier: {
         configurable:true,
-        get: function ()      { return this.rawOriginalAssetPath;  },
-        set: function (value) { this.rawOriginalAssetPath = value; }
+        get: function ()      { return this.rawCheck_box_dossier;  },
+        set: function (value) { this.rawCheck_box_dossier = value; }
+    },
+    rawCheck_box_collection: { writable: true, configurable:true, value:null },
+    check_box_collection: {
+        configurable:true,
+        get: function ()      { return this.rawCheck_box_collection;  },
+        set: function (value) { this.rawCheck_box_collection = value; }
+    },
+    rawCheck_box_metadata: { writable: true, configurable:true, value:null },
+    check_box_metadata: {
+        configurable:true,
+        get: function ()      { return this.rawCheck_box_metadata;  },
+        set: function (value) { this.rawCheck_box_metadata = value; }
     }
 
 
