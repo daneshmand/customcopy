@@ -1,4 +1,49 @@
 
+function updateCollection(Properties){
+
+    setUpdateCollectionStartProperties(Properties);
+    return Properties
+
+}
+
+function setUpdateCollectionStartProperties(prop){
+
+    prop.step =  "updateCollection";
+
+    prop = setLoadBarUpdateCollectionStartProperties(prop);
+    setView(prop);
+    Properties = prop;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(runUpdateCollectionProcess(prop),5000);
+
+}
+
+function runUpdateCollectionProcess(prop){
+    //todo Develop runUpdateCollectionProcess
+
+    prop = setLoadBarUpdateCollectionInProcessProperties(prop);
+    prop = setNavButtonsForDisable(prop);
+
+    setView(prop);
+    Properties = prop;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(setUpdateCollectionEndProperties(prop),10000);
+}
+
+function setUpdateCollectionEndProperties(prop){
+
+
+
+    prop = setLoadBarUpdateCollectionFinishedProperties(prop);
+    setView(prop);
+    Properties = prop;
+
+    return prop;
+}
+/*
+
 function updateCollection(){
 
     setUpdateCollectionStartProperties();
@@ -30,6 +75,7 @@ function setUpdateCollectionEndProperties(){
     Properties.ldbar_html =  ldbar_html;
 
 }
+*/
 
 // 9. & 10. Retrieve collections of original object and add new object to collections
 //- Do a relation search for contained-by relations on the original asset

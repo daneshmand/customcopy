@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var Properties =Object.create(null);
+var Properties = Object.create(null);
 
 Properties.prototype = {
     getTitle: function(){

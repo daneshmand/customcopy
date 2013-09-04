@@ -1,61 +1,58 @@
+var timeout;
 var callbacks = $.Callbacks();
-var trace;
 
 function step1() {
-//    alert("inside first line step1");
     retrieveOriginalObjectProperties();
 }
 callbacks.empty()
 callbacks.add( step1 );
 callbacks.fire();
 
-function step2() {
-    copyAsset();
-}
+function startProcess() {
+    //alert("process is started");
+    //var callbacks = $.Callbacks();
+
+    function step2(Properties) {
+        copyAsset(Properties);
+    }
 callbacks.empty()
 callbacks.add( step2 );
-callbacks.fire();
+callbacks.fire(Properties);
 
-function step3() {
-    var prop3 = updateMetadata();
-    setView(prop3);
-    console.log("Step3: " + prop3.getStep());
+    function step3(Properties) {
+        updateMetadata(Properties);
+    }
+callbacks.empty()
+callbacks.add( step3 );
+callbacks.fire(Properties);
 
-}
+    function step4(Properties) {
+        updateCollection(Properties);
+    }
+callbacks.empty()
+callbacks.add( step4 );
+callbacks.fire(Properties);
 
-//callbacks.empty()
-//callbacks.add( step3 );
-//callbacks.fire();
+    function step5(Properties) {
+        updateRelation(Properties);
+    }
+callbacks.empty()
+callbacks.add( step5 );
+callbacks.fire(Properties);
 
-function step4() {
-    var prop4 = updateCollection();
-    setView(prop4);
-    console.log("Step4: " + prop4.getStep());
+    function step6(Properties) {
+        addVariationToEnterprise(Properties);
+    }
+callbacks.empty()
+callbacks.add( step6 );
+callbacks.fire(Properties);
 
-}
-//callbacks.empty()
-//callbacks.add( step4 );
-//callbacks.fire();
+    function step7(Properties) {
+        setLastView(Properties);
+    }
+    callbacks.empty()
+    callbacks.add( step7 );
+    callbacks.fire(Properties);
+};
 
 
-function step5() {
-    var prop5 = updateRelation();
-    setView(prop5);
-    console.log("Step5: " + prop5.getStep());
-
-}
-
-//callbacks.empty()
-//callbacks.add( step5 );
-//callbacks.fire();
-
-function step6() {
-    var prop6 = AddVariationToEnterprise();
-    setView(prop6);
-    console.log("Step6: " + prop6.getStep());
-
-}
-
-//callbacks.empty()
-//callbacks.add( step6 );
-//callbacks.fire();

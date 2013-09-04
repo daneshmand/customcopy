@@ -1,44 +1,49 @@
 
 function retrieveOriginalObjectProperties(){
 
-    setRetrieveOriginalObjectPropertiesStartProperties(Properties) ;
-
-    return Properties;
+    setStartRetrieveOriginalObjectProperties(Properties);
+    return Properties
 }
 
-function setRetrieveOriginalObjectPropertiesStartProperties(prop){
+function setStartRetrieveOriginalObjectProperties(prop){
 
     prop.step =  "retrieveOriginalObjectProperties";
-    prop.title = "Copy | Elvis";
-//    prop.title_src = "Source";
-//    prop.title_dest = "Destination";
-    prop.check_boxes = '\
-<br><input class="check_box_dossier" type="checkbox" value=TRUE name="check_box_dossier"> Select same dossier to copy new asset\
-<br><input class="check_box_collection" type="checkbox" value=FALSE name="check_box_collection"> Update collections\
-<br><input class="rawCheck_box_metadata" type="checkbox" value=TRUE name="rawCheck_box_metadata"> Update Metadata\
-';
-    prop.title_ldbar = "Copy | Elvis";
+    prop = setPropToDefault(prop);
 
-    prop.nav_buttons = "";
-    prop.dest_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
-    prop.src_path = "<span style=\'color: #F00\'>No Path has been defined yet</span>";
+    setView(prop);
+    Properties = prop;
 
-    setView(setLdbarHtmlStarted(prop));
-    runRetrieveOriginalObjectPropertiesProcess(prop);
+    clearTimeout(timeout);
+    timeout = setTimeout(runInProcessRetrieveOriginalObjectProperties(prop),1000);
+    //timeout = setTimeout(runInProcessRetrieveOriginalObjectPropertiesLocal(prop),1000); //only for local test in browser (bypass elvis object)
 }
 
-function runRetrieveOriginalObjectPropertiesProcess(prop){
-    //todo clean runRetrieveOriginalObjectPropertiesProcess
+function runInProcessRetrieveOriginalObjectPropertiesLocal(prop){
+
+
+    prop = setSrcPath(prop,"/dog.jpg");
+    prop = setDestPath(prop,"/dog.jpg");
+
+    setView(prop);
+    Properties = prop;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(setEndRetrieveOriginalObjectProperties(prop),1000);
+}
+
+function runInProcessRetrieveOriginalObjectProperties(prop){
 
     var selectedHits = ElvisPlugin.resolveElvisContext().activeTab.assetSelection;
         if (selectedHits.length == 0) {
-            //alert("Selection is empty. Select one or more images or a collection of images from the Elvis Desktop client.");
 
-            prop = setLdbarHtmlError(prop,"<span style=\'color: #e8e8e8; font-style: italic \'>Check it! Seems you forget to select an asset at Elvis list. Close current popup windows and select one or more images or a collection of images from the Elvis Desktop client. Good luck!</span>");
+            prop = setPropToError(prop);
             setView(prop);
+
+            Properties = prop;
             callbacks.disable();
 
         }else{
+
             var query = ElvisPlugin.queryForSelection(selectedHits);
             prop.nav_buttons = JSON.stringify(query);
 
@@ -49,21 +54,22 @@ function runRetrieveOriginalObjectPropertiesProcess(prop){
             }, function(data) {
                 amd = data.hits[0].metadata;
 
-                prop = setLdbarHtmlInProcess(prop,"Retrieving original asset meta data in process ... Please wait! ");
-                prop = setSrcPath(prop,amd.assetPath);
-                prop = setDestPath(prop,amd.assetPath);
+                prop = setPropToPreProcess(prop, amd);
+
                 setView(prop);
-                setRetrieveOriginalObjectPropertiesEndProperties(prop);
+                Properties = prop;
+
+                clearTimeout(timeout);
+                timeout = setTimeout(setEndRetrieveOriginalObjectProperties(prop),3000);
 
             });
         }
 }
 
-function setRetrieveOriginalObjectPropertiesEndProperties(prop){
+function setEndRetrieveOriginalObjectProperties(prop){
 
-    prop = setLdbarHtmlInProcess(prop,"Cool, all required data is retrieved.");
+    prop = setPropToPreProcessFinished(prop);
     setView(prop);
-
     Properties = prop;
     return prop;
 }

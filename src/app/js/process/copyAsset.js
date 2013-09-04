@@ -1,40 +1,44 @@
 
-    function copyAsset(){
+    function copyAsset(Properties){
 
         setCopyAssetStartProperties(Properties);
-
-        return Properties;
+        return Properties
 
     }
 
     function setCopyAssetStartProperties(prop){
 
-        prop.step =  "retrieveOriginalObjectProperties";
+        prop.step =  "copyAsset";
 
-        prop = setLdbarHtmlInProcess(prop,"New step is coping asset to new location.");
-        setView(setLdbarHtmlStarted(prop));
+        prop = setLoadBarCopyAssetStartProperties(prop);
+        setView(prop);
+        Properties = prop;
 
-        runCopyAssetProcess(prop);
+        clearTimeout(timeout);
+        timeout = setTimeout(runCopyAssetProcess(prop),5000);
+
     }
 
-    function runCopyAssetProcess(){
+    function runCopyAssetProcess(prop){
         //todo Develop runCopyAssetProcess
 
-        prop = setLdbarHtmlInProcess(prop,"Ok, Next step is started ... Please wait.");
-        setView(setLdbarHtmlStarted(prop));
+        prop = setLoadBarCopyAssetInProcessProperties(prop);
+        prop = setNavButtonsForDisable(prop);
 
+        setView(prop);
+        Properties = prop;
 
-
-        setCopyAssetEndProperties(prop);
+        clearTimeout(timeout);
+        timeout = setTimeout(setCopyAssetEndProperties(prop),10000);
     }
 
     function setCopyAssetEndProperties(prop){
 
-        var message_ldbar = "Copy process is finished." ;
 
-        prop = setLdbarHtmlInProcess(prop,"Ok, Next step is finished and requested copy is done.");
 
-        setLdbarHtmlInProcess(message_ldbar);
-        Properties.ldbar_html =  ldbar_html;
+        prop = setLoadBarCopyAssetFinishedProperties(prop);
+        setView(prop);
+        Properties = prop;
 
+        return prop;
     }

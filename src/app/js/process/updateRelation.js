@@ -1,4 +1,49 @@
 
+function updateRelation(Properties){
+
+    setUpdateRelationStartProperties(Properties);
+    return Properties
+
+}
+
+function setUpdateRelationStartProperties(prop){
+
+    prop.step =  "copyAsset";
+
+    prop = setLoadBarUpdateRelationStartProperties(prop);
+    setView(prop);
+    Properties = prop;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(runUpdateRelationProcess(prop),5000);
+
+}
+
+function runUpdateRelationProcess(prop){
+    //todo Develop runUpdateRelationProcess
+
+    prop = setLoadBarUpdateRelationInProcessProperties(prop);
+    prop = setNavButtonsForDisable(prop);
+
+    setView(prop);
+    Properties = prop;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(setUpdateRelationEndProperties(prop),10000);
+}
+
+function setUpdateRelationEndProperties(prop){
+
+
+
+    prop = setLoadBarUpdateRelationFinishedProperties(prop);
+    setView(prop);
+    Properties = prop;
+
+    return prop;
+}
+
+/*
 function updateRelation(){
 
     setUpdateRelationStartProperties();
@@ -29,7 +74,7 @@ function setUpdateRelationEndProperties(){
     setLdbarHtmlInProcess(message_ldbar);
     Properties.ldbar_html =  ldbar_html;
 
-}
+}*/
 
 //var originalElvisId = '...';
 

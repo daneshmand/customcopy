@@ -1,24 +1,27 @@
 
+function setSrcPathDefault (prop){
+
+    prop.src_path = getPathHtmlTemplate("","No path has been defined yet!");
+    return prop;
+}
+
 function setSrcPath(prop, path){
-//    alert("amd from setOriginalAssetMetadata: " +JSON.stringify(amd));
 
     switch(PLUGIN_TYPE)
     {
         case "CustomCopy":
-            prop.src_path = "c://test/customcopy/src/" + path;//amd.assetPath;
-            return prop;
-            break;
+            prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
         case "NewVersion":
-            prop.src_path = path;
-            return prop;
-            break;
+            prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
         case "NewVariation":
-            prop.src_path = path;
-            return prop;
-            break;
+            prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
         case "Duplicate":
-            prop.src_path = path;
-            return prop;
-            break;
+            prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
     }
+    return prop;
+}
+function setSrcPathError (prop){
+
+    prop.src_path = getPathHtmlTemplate("","No source path is created!");
+    return prop;
 }

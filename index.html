@@ -21,7 +21,7 @@ body, td, th {
 <link  href="src/app/css/style.css" rel="stylesheet" type="text/css"/>
 <script>
 //config operation of this plugin
-    var PLUGIN_TYPE = "CustomCopy"; //CustomCopy,NewVersion,NewVariation,Duplicate
+    var PLUGIN_TYPE = "NewVersion"; //CustomCopy,NewVersion,NewVariation,Duplicate
     var MyTemp ="default"; //use only as a temporary global variable.
 </script>
 
@@ -31,6 +31,8 @@ body, td, th {
 <script src="src/jquery/js/jquery.cookie.js" type="text/javascript"></script>
 
     <script src='src/app/js/objects/properties.js'></script>
+    <script src='src/app/js/views/templates.js'></script>
+    <script src='src/app/js/views/setProp.js'></script>
     <script src='src/app/js/views/setView.js'></script>
 
 <script src='src/app/js/services/srcMngr.js'></script>
@@ -38,22 +40,21 @@ body, td, th {
 <script src='src/app/js/services/navMngr.js'></script>
 <script src='src/app/js/services/ldbarMngr.js'></script>
 <script src='src/app/js/services/titleMngr.js'></script>
-
-    <!--<script src="src/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>-->
-    <script src="${pluginsBaseRootUrl}/web.shared/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>
-
-    <script>var elvisApi = new ElvisAPI("${serverUrl}");</script>
+<script src='src/app/js/services/checkMngr.js'></script>
+<script src="src/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>
+<script>var elvisApi = new ElvisAPI("${serverUrl}");</script>
 
 <script src='src/app/js/process/retrieveOriginalObjectProperties.js'></script>
-<script src='src/app/js/process/AddVariationToEnterprise.js'></script>
 <script src='src/app/js/process/copyAsset.js'></script>
-<script src='src/app/js/process/updateCollection.js'></script>
 <script src='src/app/js/process/updateMetadata.js'></script>
+<script src='src/app/js/process/updateCollection.js'></script>
 <script src='src/app/js/process/updateRelation.js'></script>
+<script src='src/app/js/process/addVariationToEnterprise.js'></script>
+<script src='src/app/js/process/setLastView.js'></script>
 
 
 <script src='src/app/js/fnFactory.js'></script>
-<script language="JavaScript" type="text/javascript">document.write("<title>" + title + "</title>")</script>
+<script language="JavaScript" type="text/javascript">document.write("<title>" + Properties.title + "</title>")</script>
 
 </head>
 <body class="main">
@@ -204,6 +205,9 @@ body, td, th {
     </td>
   </tr>
 </table>
+
+<!--<script src="src/app/js/services/clickMngr.js" type="text/javascript"></script>-->
+
 <!--<script>
     document.write("Test 1: In page Js is working: <br>");
 
