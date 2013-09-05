@@ -14,8 +14,8 @@ function setStartRetrieveOriginalObjectProperties(prop){
     Properties = prop;
 
     clearTimeout(timeout);
-    timeout = setTimeout(runInProcessRetrieveOriginalObjectProperties(prop),1000);
-    //timeout = setTimeout(runInProcessRetrieveOriginalObjectPropertiesLocal(prop),1000); //only for local test in browser (bypass elvis object)
+//    timeout = setTimeout(runInProcessRetrieveOriginalObjectProperties(prop),1000);
+    timeout = setTimeout(runInProcessRetrieveOriginalObjectPropertiesLocal(prop),1000); //only for local test in browser (bypass elvis object)
 }
 
 function runInProcessRetrieveOriginalObjectPropertiesLocal(prop){

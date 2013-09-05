@@ -10,7 +10,7 @@ function setSrcPath(prop, path){
     switch(PLUGIN_TYPE)
     {
         case "CustomCopy":
-            prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
+            prop.src_path = getUploadHtmlTemplate();break;
         case "NewVersion":
             prop.src_path = getPathHtmlTemplate("c://test/customcopy/src",path);break;
         case "NewVariation":

@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+
+Licensed under the MIT License
+Copyright (c) 2010-2013 WoodWing Software
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+<head>
+	<title>DAMTube - Your upload portal - Elvis DAM</title>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.js" type="text/javascript"></script>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.class.js" type="text/javascript"></script>
+	<script src="${pluginsBaseRootUrl}/web.shared/jquery.cookie.js" type="text/javascript"></script>
+	<link  href="${pluginsBaseRootUrl}/web.shared/elvis_api/css/elvis.css" rel="stylesheet" type="text/css"/>
+	<script src="${pluginsBaseRootUrl}/web.shared/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>
+	<link  href="resources/styles.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+
+var elvisApi = new ElvisAPI("${serverUrl}");
+elvisApi.useAutoLogin("guest", "guest", "api_sample_DAMtube");
+
+var previewLightbox = new PreviewLightbox();
+
+var VideoHitRenderer = HitRenderer.extend({
+	
+	init: function() {
+		this._parent();
+		
+		// Register itemClick handler that shows preview
+		this.itemClick = function (event, hit, hits, index) {
+			previewLightbox.showGallery(hits, index);
+		};
+	}
+	
+	/*
+	// redefine method
+	postProcessHit: function ( hitElement, hit, index) {
+		// call super method
+		this._parent(hitElement, hit, index);
+		
+		// display duration on videos
+		if (hit.metadata.assetDomain == "video") {
+			var videoDuration = hit.metadata.videoLength;
+			if (videoDuration == null) {
+				return;
+			}
+			
+			var sec = Math.floor((videoDuration / 1000) % 60);
+			var min = Math.floor((videoDuration / 1000 / 60) % 60);
+			var hour = Math.floor((videoDuration / 1000 / 60 / 60) % 60);
+			
+			videoDuration = hour + ":" + (min < 10 ? '0' : '') + min + ":" + (sec < 10 ? '0' : '') + sec;
+			
+			hitElement.find(".elvisThumbnailOverlay")[0].insert('<div class="videoDuration">{videoDuration}</div>'.replaceParams({
+				videoDuration: videoDuration
+			}));
+		}
+	}
+	*/
+});
+
+
+
+var searchRenderer = new VideoHitRenderer();
+searchRenderer.hitsTarget = "#resultHits";
+searchRenderer.infoTarget = "#resultInfo";
+searchRenderer.pageTarget = "#resultPage";
+searchRenderer.linkRel = "prettyPhoto[searchRenderer]"
+searchRenderer.metadataToDisplay = ["assetCreated", "rating"];
+searchRenderer.pageClick = function (start, num) {
+	searchHits(null, start, num);
+};
+
+var popVideoRenderer = new VideoHitRenderer();
+popVideoRenderer.hitsTarget = "#popularVideos";
+popVideoRenderer.linkRel = "prettyPhoto[popVideoRenderer]"
+popVideoRenderer.metadataToDisplay = ["assetCreated", "rating"];
+
+var popImageRenderer = new VideoHitRenderer();
+popImageRenderer.hitsTarget = "#popularImages";
+popImageRenderer.linkRel = "prettyPhoto[popImageRenderer]"
+popImageRenderer.metadataToDisplay = ["assetCreated", "rating"];
+
+var recentlyAddedRenderer = new VideoHitRenderer();
+recentlyAddedRenderer.hitsTarget = "#recentlyAdded";
+recentlyAddedRenderer.linkRel = "prettyPhoto[recentlyAddedRenderer]"
+recentlyAddedRenderer.metadataToDisplay = ["assetCreated", "rating"];
+
+function refreshResults() {
+	// search tags
+	elvisApi.search({
+		q: "assetDomain:video OR assetDomain:image",
+		num: 0,
+		facets: "tags"
+	}, renderTagCloud);
+	
+	// search popular images, videos and latest
+	var metadataToReturn = "assetCreated,rating,videoLength";
+
+	elvisApi.search({
+		q: "assetDomain:video",
+		num: 4,
+		sort: "rating-desc",
+		metadataToReturn: metadataToReturn
+	}, popVideoRenderer.render);
+
+	elvisApi.search({
+		q: "assetDomain:image",
+		num: 4,
+		sort: "rating-desc",
+		metadataToReturn: metadataToReturn
+	}, popImageRenderer.render);
+	
+	elvisApi.search({
+		q: "assetDomain:video OR assetDomain:image",
+		num: 12,
+		sort: "assetCreated-desc",
+		metadataToReturn: metadataToReturn
+	}, recentlyAddedRenderer.render);
+}
+
+function renderTagCloud(data) {
+	var html = "";
+
+	var facets = data.facets["tags"];
+	if (facets.length != 0) {
+		// Determine low and high bound of hitCount
+		var high = facets[0].hitCount;
+		var low = high;
+		for (var i = 1; i < facets.length; i++) {
+			var hitCount = facets[i].hitCount;
+			if (high < hitCount) {
+				high = hitCount;
+			}
+			if (low > hitCount) {
+				low = hitCount;
+			}
+		}
+
+		// Render links
+		for (var i = 0; i < facets.length; i++) {
+			var value = facets[i].value;
+			var hitCount = facets[i].hitCount;
+			
+			// Calculate font size factor
+			var x = (hitCount - low) / (high - low);
+			
+			html += '<a href="#" onclick="searchHits(\'{query}\'); return (false)" style="font-size:{size}px" title="{title}">{label}</a> '.replaceParams({
+				query: escape('tags:"'+value+'"'),
+				label: value,
+				title: value + " (" + hitCount + ")",
+				size: (9 * x + 11)
+			});
+		}
+	}
+
+	$("#tags").html(html);
+}
+
+var currentQuery = "";
+
+function searchHits(query, start, num) {
+	// init defaults for optional parameters
+	if (start == null) {
+		start = 0;
+	}
+	if (num == null) {
+		num = 20;
+	}
+	
+	// remember query for paging
+	if (query != null) {
+		currentQuery = unescape(query);
+	}
+	
+	elvisApi.search({
+		q: currentQuery + ' AND (assetDomain:video OR assetDomain:image)',
+		start: start,
+		num: num,
+		facets: "tags"
+	}, searchRenderer.render);
+	
+	switchPage("#searchPage");
+}
+
+function switchPage(id) {
+	var siblings = $(id).siblings();
+	for (var i = 0; i < siblings.length; i++) {
+		$(siblings[i]).hide();
+	}
+	$(id).show();
+}
+
+$(function () {
+    refreshResults();
+});
+
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+
+		<div id="header">
+			<img class="logo" src="resources/logo.png" alt="DAMtube"/>
+			<div class="upload">
+                <a href="upload.html"><img src="resources/upload_btn.png" alt="Upload your own videos and images"/></a>
+            </div>
+		</div>
+
+		<div class="tagcloud">
+			<h2>Popular tags</h2>
+			<div id="tags"></div>
+		</div>
+
+		<div id="pages">
+
+			<div id="homePage">
+				<table>
+					<tbody>
+						<tr>
+							<td class="col1">
+								<h2>Popular videos</h2>
+								<div id="popularVideos"></div>
+								<a href="#assetDomain:video" class="more">more...</a>
+							</td>
+							<td class="col2">
+								<h2>Popular images</h2>
+								<div id="popularImages"></div>
+								<a href="#assetDomain:video" class="more">more...</a>
+							</td>
+							<td class="col3">
+								<h2>Recently added</h2>
+								<div id="recentlyAdded"></div>
+								<a href="#assetDomain:video" class="more">more...</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div id="searchPage">
+				<div id="resultInfo"></div>
+				<div id="resultPage"></div>
+				<div id="resultHits"></div>
+			</div>
+
+			<div id="detailPage">
+				<div id="preview"></div>
+				<div id="info"></div>
+				<div id="related"></div>
+			</div>
+
+		</div>
+	</div>
+	<div id="throbber" style="display:none;">
+		<img src="${pluginsBaseRootUrl}/web.shared/elvis_api/images/ajax-loader.gif" width="16" height="16"/>
+	</div>
+	<div class="elvisCopyright">Powered by <a href="http://www.elvisdam.com">Elvis</a> &copy; <a href="http://www.woodwing.com">WoodWing Software</a></div>
+</body>
+</html>
