@@ -30,7 +30,7 @@ function repeatString(str, num) {
  Can't pass an undefined variable to dump().
  dump() can't distinguish between int and float.
  dump() can't tell the original variable type of a member variable of an object.
- These limitations can't be fixed because these are *features* of JS. However, dump()
+ These limitations can't be fixed because these are *f.e.a.t.u.r.e.s* of JS. However, dump()
  */
 function dump(v, howDisplay, recursionLevel) {
     howDisplay = (typeof howDisplay === 'undefined') ? "alert" : howDisplay;

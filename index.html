@@ -32,14 +32,21 @@ body, td, th {
 <script src="src/jquery/js/jquery.class.js" type="text/javascript"></script>
 <script src="src/jquery/js/jquery.cookie.js" type="text/javascript"></script>
 
-    <script src="src/upload/resources/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-    <script src="src/upload/resources/jquery.iframe-transport.js" type="text/javascript"></script>
-    <script src="src/upload/resources/jquery.fileupload.js" type="text/javascript"></script>
+<script src="src/upload/resources/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+<script src="src/upload/resources/jquery.iframe-transport.js" type="text/javascript"></script>
+<script src="src/upload/resources/jquery.fileupload.js" type="text/javascript"></script>
 
-    <script src='src/app/js/objects/properties.js'></script>
-    <script src='src/app/js/views/templates.js'></script>
-    <script src='src/app/js/views/setProp.js'></script>
-    <script src='src/app/js/views/setView.js'></script>
+<script src="${pluginsBaseRootUrl}/web.shared/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>
+<script>var elvisApi = new ElvisAPI("${serverUrl}");</script>
+    <!--<script>var elvisApi = new ElvisAPI("http://172.16.249.100:8080");</script>-->
+
+    <script src='configs/configs.js'></script>
+
+<script src='src/app/js/objects/properties.js'></script>
+<script src='src/app/js/views/templates.js'></script>
+<script src='src/app/js/views/setProp.js'></script>
+<script src='src/app/js/views/setView.js'></script>
+<script src="src/app/js/utils/folderBrowser.js" type="text/javascript"></script>
 
 <script src='src/app/js/services/srcMngr.js'></script>
 <script src='src/app/js/services/destMngr.js'></script>
@@ -47,8 +54,6 @@ body, td, th {
 <script src='src/app/js/services/ldbarMngr.js'></script>
 <script src='src/app/js/services/titleMngr.js'></script>
 <script src='src/app/js/services/checkMngr.js'></script>
-<!--<script src="src/elvis_api/js/jquery.elvis.js" type="text/javascript"></script>-->
-<!--<script>var elvisApi = new ElvisAPI("${serverUrl}");</script>-->
 
 <script src='src/app/js/process/retrieveOriginalObjectProperties.js'></script>
 <script src='src/app/js/process/copyAsset.js'></script>
@@ -63,10 +68,9 @@ body, td, th {
 
 </head>
 <body class="main">
-<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>
-        <table class="table_big" border="0" cellspacing="0" cellpadding="0">
+
+<!-- ------------------ Load Bar Start -->
+<table class="table_big" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td class="table_cell_big_left_top"><img src="images/borders/table_cell_big_left_top.png" alt="" width="32" height="35" /></td>
           <td class="table_cell_big_mid_top"></td>
@@ -76,11 +80,11 @@ body, td, th {
           <td class="table_cell_big_left_mid"></td>
           <td class="table_cell_big_mid_mid">
 
-<!-- ------------------ Load Bar Start -->
+<!-- ------------------ Load Bar tag Start -->
 
  <div class="ldbar" id="ldbar_html"/>
- 
-<!-- ------------------ Load Bar End -->
+
+<!-- ------------------ Load Bar tag End -->
 
 		</td>
           <td class="table_cell_big_right_mid"></td>
@@ -91,143 +95,80 @@ body, td, th {
           <td class="table_cell_big_right_buttom"><img src="images/borders/table_cell_big_right_buttom.png" width="32" height="35" /></td>
         </tr>
       </table>
-        <h4>
+<!-- ------------------ Load Bar end -->
+
+
+
 <!-- ------------------ Source Title Start -->
+<h4 style="color: white"><div class="title" id="title_src"></div></h4>
+<!-- ------------------ source tag start ------------------ -->
+<div class="content" id="src_path"></div>
+<!-- ------------------ source End ------------------ -->
 
-<div class="title" id="title_src"/>
 
-<!-- ------------------ Source Title End -->
-      </h4>
-        <table  class="table_small" width="100%"  border="0" cellspacing="0" cellpadding="0">
+<!-- ------------------ Destinations Title Start -->
+<h4 style="color: white"><div class="title" id="title_dest"></div></h4>
+<!-- ------------------ Destinations tag start ------------------ -->
+<div class="content" id="dest_path"></div>
+<div class="content" id="dest_path_folder"></div>
+<!-- ------------------ Destinations  End -->
+
+<br>
+<!-- ------------------ Check Boxes Start -->
+<table  class="table_small" width="100%"  border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="table_cell_small_top" ></td>
+    </tr>
+    <tr>
+        <td class="table_cell_small_mid"><table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td class="table_cell_small_top" ></td>
-            </tr>
-            <tr>
-              <td class="table_cell_small_mid"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td class="table_cell_small_left_top"><img src="images/borders/table_cell_small_left_top.png" width="32" height="12" /></td>
-                    <td class="table_cell_small_mid_top"></td>
-                    <td class="table_cell_small_right_top"><span class="table_cell_small_left_top"><img src="images/borders/table_cell_small_right_top.png" alt="" width="32" height="12" /></span></td>
-                  </tr>
-                  <tr>
-                    <td class="table_cell_small_left_mid"></td>
-                    <td class="table_cell_small_mid_mid">
-
-    <!-- ------------------ source code start ------------------ -->
-
-    <div class="content" id="src_path"/>
-
-    <!-- ------------------ source End ------------------ -->
-
-                                </td>
-                    <td class="table_cell_small_right_mid"></td>
-                  </tr>
-                  <tr>
-                    <td class="table_cell_small_left_buttom"><img src="images/borders/table_cell_small_left_buttom.png" alt="" width="32" height="12" /></td>
-                    <td class="table_cell_small_mid_buttom"></td>
-                    <td class="table_cell_small_right_mid"><span class="table_cell_small_left_top"><img src="images/borders/table_cell_small_right_buttom.png" alt="" width="32" height="12" /></span></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td class="table_cell_small_dwon"></td>
-            </tr>
-        </table>
-        <h4>
-
-  <!-- ------------------ Destinations Title Start -->
-
-  <div class="title" id="title_dest"/>
-
-  <!-- ------------------ Destinations Title End -->
-
-      </h4>
-        <table  class="table_small" width="100%"  border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td class="table_cell_small_top" ></td>
-        </tr>
-        <tr>
-          <td class="table_cell_small_mid"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
                 <td class="table_cell_small_left_top"><img src="images/borders/table_cell_small_left_top.png" width="32" height="12" /></td>
                 <td class="table_cell_small_mid_top"></td>
                 <td class="table_cell_small_right_top"><span class="table_cell_small_left_top"><img src="images/borders/table_cell_small_right_top.png" alt="" width="32" height="12" /></span></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td class="table_cell_small_left_mid"></td>
                 <td class="table_cell_small_mid_mid">
-                
-<!-- ------------------ Destinations code start ------------------ -->
-                  
-<div class="content" id="dest_path"/>
-                  
-<!-- ------------------ Destinations End ------------------ -->
 
-				</td>
+                    <!-- ------------------ checkbox tag start ------------------ -->
+
+                    <div class="content" id="check_boxes"></div>
+
+                    <!-- ------------------ checkbox tag End ------------------ -->
+
+                </td>
                 <td class="table_cell_small_right_mid"></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td class="table_cell_small_left_buttom"><span class="table_cell_small_left_buttom"><img src="images/borders/table_cell_small_left_buttom.png" alt="" width="32" height="12" /></span></td>
                 <td class="table_cell_small_mid_buttom"></td>
                 <td class="table_cell_small_right_mid"><span class="table_cell_small_left_top"><img src="images/borders/table_cell_small_right_buttom.png" alt="" width="32" height="12" /></span></td>
-              </tr>
-            </table></td>
-        </tr>
-        <tr>
-          <td class="table_cell_small_dwon"></td>
-        </tr>
-      </table>
-        <table  width="100%" border="0" cellpadding="0" cellspacing="0" id=" ">
-            <tr>
-                <td style="height: 40px; width: 50px" ></td>
-                <td height="40" style="width: 100%; text-align: left" valign="bottom" nowrap="nowrap">
-
-<!-- ------------------ checkbox code start ------------------ -->
-
-<div class="content" id="check_boxes"/>
-
-<!-- ------------------ checkbox End ------------------ -->
-
-                </td>
             </tr>
-        </table>
-        <table  width="100%" border="0" cellpadding="0" cellspacing="0" id=" ">
+        </table></td>
+    </tr>
+    <tr>
+        <td class="table_cell_small_dwon"></td>
+    </tr>
+</table>
+<!-- ------------------ Check Boxes End -->
+
+<!-- ------------------  Navigation Buttons Start -->
+<table  width="100%" border="0" cellpadding="0" cellspacing="0" id=" ">
             <tr style="height: 40px;">
                 <td width="100%" valign="bottom"></td>
                 <td height="40" valign="bottom" nowrap="nowrap">
-          
-<!-- ------------------ Navigation code start ------------------ -->
-          
+
+<!-- ------------------ Navigation tag start ------------------ -->
+
 <div class="content" id="nav_buttons"/>
 
-<!-- ------------------ Navigation End ------------------ -->
+<!-- ------------------ Navigation tag End ------------------ -->
 
                 </td>
                 <td width="100%" valign="bottom"></td>
             </tr>
         </table>
-    </td>
-  </tr>
-</table>
+<!-- ------------------ Navigation Buttons End -->
 
-<!--<script src="src/app/js/services/clickMngr.js" type="text/javascript"></script>-->
-
-<!--<script>
-    document.write("Test 1: In page Js is working: <br>");
-
-    document.write("Test2 : retriveproperties <br>Title: \
-    " + properties.getTitle() + "<br>");
-    document.write("getTitle_src: " + properties.getTitle_src() + "<br>");
-    document.write("getTitle_src: " + properties.getTitle_dest()+ "<br>");
-    document.write("getTitle_ldbar: " + properties.getTitle_ldbar()+ "<br>");
-    document.write("getMessage_ldbar: " + properties.getMessage_ldbar()+ "<br>");
-    document.write("getIcon_ldbar: " + properties.getIcon_ldbar()+ "<br>");
-    document.write("getNav_buttons: " + properties.getNav_buttons()+ "<br>");
-    document.write("getDest_path: " + properties.getDest_path()+ "<br>");
-    document.write("getSrc_path: " + properties.getSrc_path()+ "<br>");
-    document.write("getLdbar_html: " + properties.getLdbar_html()+ "<br>");
-</script>-->
-</div>
 </body>
 </html>
