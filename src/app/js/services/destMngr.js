@@ -1,7 +1,8 @@
 
 function setDestPathDefault (prop){
 
-    prop.dest_path = getPathErrorHtmlTemplate("No path has been defined yet!");
+
+    prop.dest_path = "No path has been defined yet!";
     return prop;
 }
 

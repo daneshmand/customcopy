@@ -25,6 +25,10 @@
         prop = setLoadBarCopyAssetInProcessProperties(prop);
         prop = setNavButtonsForDisable(prop);
 
+        copyAssetOrFolderToElvisViaRest(prop.src_path,prop.dest_path);
+        if (PLUGIN_TYPE != "NewVersion"){
+            prop.destAssetId = addVariationToElvisViaRest();
+        }
         setView(prop);
         Properties = prop;
 

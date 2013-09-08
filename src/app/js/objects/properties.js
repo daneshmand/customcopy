@@ -53,6 +53,15 @@ Properties.prototype = {
     },
     getCheck_box_metadata: function(){
         return this.check_box_metadata;
+    },
+    getMetadata: function(){
+        return this.metadata;
+    },
+    getSrcAssetId: function(){
+        return this.srcAssetId;
+    },
+    getDestAssetId: function(){
+        return this.destAssetId;
     }
 
 }
@@ -151,6 +160,24 @@ var Properties = Object.create(Properties.prototype, {
         configurable:true,
         get: function ()      { return this.rawCheck_box_metadata;  },
         set: function (value) { this.rawCheck_box_metadata = value; }
+    },
+    rawMetadata: { writable: true, configurable:true, value:null },
+    metadata: {
+    configurable:true,
+        get: function ()      { return this.rawMetadata;  },
+    set: function (value) { this.rawMetadata = value; }
+    },
+    rawSrcAssetId: { writable: true, configurable:true, value:null },
+    srcAssetId: {
+        configurable:true,
+        get: function ()      { return this.rawSrcAssetId;  },
+        set: function (value) { this.rawSrcAssetId = value; }
+    },
+    rawDestAssetId: { writable: true, configurable:true, value:null },
+    destAssetId: {
+        configurable:true,
+        get: function ()      { return this.rawDestAssetId;  },
+        set: function (value) { this.rawDestAssetId = value; }
     }
 
 
