@@ -1,9 +1,9 @@
 // Main Configurations:
 
-var PLUGIN_TYPE = "CustomCopy"; //CustomCopy,NewVersion,NewVariation,Duplicate
+var PLUGIN_TYPE = "NewVariation"; //CustomCopy,NewVersion,NewVariation,Duplicate
 var SERVER_FILESTORE_PATH = "c://test/customcopy/server";// no slash at the end
 var ELVIS_FILESTORE_PATH = "c://test/customcopy/server/elvis";// no slash at the end
-var ELVIS_SERVER_BASE_URL = ""; //no slash at the end : http://localhost:8080
+var ELVIS_SERVER_BASE_URL = ""; //no slash at the end, eg.: http://localhost:8080
 var enterpriseEndpoint = 'http://localhost/Enterprise822/index.php'; //no slash at the end
 var USERNAME = "smAdmin";
 var PASSWORD = "Apple00";
@@ -26,16 +26,16 @@ var PASSWORD = "Apple00";
 //Features: "all" and "upload" options are planed for next phase!
 
 var CUSTOMCOPY_SRC = "upload";//asset, upload, [elvis, server, all]
-var CUSTOMCOPY_DEST = "elvis";//elvis, asset, same, [all]
+var CUSTOMCOPY_DEST = "elvis";//elvis, [all]
 var CUSTOMCOPY_METADATA = "enable";// enable, disable | enable to appear
 var CUSTOMCOPY_METADATA_DEFAULT = "unchecked";//checked, unchecked
 var CUSTOMCOPY_DOSSIER = "enable";// enable, disable | enable to appear
 var CUSTOMCOPY_DOSSIER_DEFAULT = "checked";//checked, unchecked
-var CUSTOMCOPY_COLLECTION = "disable";// enable, disable | enable to appear
-var CUSTOMCOPY_COLLECTION_DEFAULT = "unchecked";//checked, unchecked
+var CUSTOMCOPY_COLLECTION = "disable";// [enable, disable | enable to appear]
+var CUSTOMCOPY_COLLECTION_DEFAULT = "unchecked";//[checked, unchecked]
 
-var NewVersion_SRC = "server";
-var NewVersion_DEST = "asset";
+var NewVersion_SRC = "upload";
+var NewVersion_DEST = "elvis";
 var NewVersion_METADATA = "asset";// enable, disable | enable to appear
 var NewVersion_METADATA_DEFAULT = "checked";//checked, unchecked
 var NewVersion_DOSSIER = "enable";// enable, disable | enable to appear
@@ -43,8 +43,8 @@ var NewVersion_DOSSIER_DEFAULT = "checked";//checked, unchecked
 var NewVersion_COLLECTION = "disable";// enable, disable | enable to appear
 var NewVersion_COLLECTION_DEFAULT = "checked";//checked, unchecked
 
-var NewVariation_SRC = "server";
-var NewVariation_DEST = "same";
+var NewVariation_SRC = "upload";
+var NewVariation_DEST = "elvis";
 var NewVariation_METADATA = "enable";// enable, disable | enable to appear
 var NewVariation_METADATA_DEFAULT = "checked";//checked, unchecked
 var NewVariation_DOSSIER = "enable";// enable, disable | enable to appear

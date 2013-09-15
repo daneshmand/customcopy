@@ -26,6 +26,12 @@ function runUpdateMetadataProcess(prop){
     prop = setLoadBarUpdateMetadataInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
 
+//    alert("runUpdateMetadataProcess Metadata:\n<br> "+JSON.stringify(prop.getMetadata()));
+//    alert("runUpdateMetadataProcess getSrcAssetId:\n<br> "+JSON.stringify(prop.getSrcAssetId()));
+//    alert("runUpdateMetadataProcess getDestAssetId:\n<br> "+JSON.stringify(prop.getDestAssetId()));
+
+    // the task ahs be done at copyAsset process (need to set metadata before upload)
+
     setView(prop);
     Properties = prop;
 
@@ -34,8 +40,6 @@ function runUpdateMetadataProcess(prop){
 }
 
 function setUpdateMetadataEndProperties(prop){
-
-
 
     prop = setLoadBarUpdateMetadataFinishedProperties(prop);
     setView(prop);

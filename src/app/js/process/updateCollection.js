@@ -20,7 +20,6 @@ function setUpdateCollectionStartProperties(prop){
 }
 
 function runUpdateCollectionProcess(prop){
-    //todo Develop runUpdateCollectionProcess
 
     prop = setLoadBarUpdateCollectionInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);

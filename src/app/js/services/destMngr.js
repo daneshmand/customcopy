@@ -46,3 +46,45 @@ function setDestPathError (prop){
     return prop;
 }
 
+function getDestAssetPathForCreateAndUpdateMetadata(amd){
+
+    var amd_s = JSON.stringify(amd);
+//    alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...1...'+JSON.stringify(amd));
+
+    var mdPath;
+    if ($('#check_box_metadata').prop('checked')) {
+
+//        alert('amd.....getDestAssetPathForCr...if....');
+        var assetName = amd.filename;
+        var folderPath =amd.folderPath;
+        mdPath = 'metadata=' + JSON.stringify(amd);
+//        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...2...' + mdPath);
+
+    }else{
+//        alert('amd.....getDestAssetPathForCr...else....');
+        var assetName = amd.filename;
+        var folderPath =amd.folderPath;
+        mdPath = 'assetPath=' + folderPath +"/"+ assetName;
+//        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...3...' + mdPath);
+
+    }
+
+    return mdPath;
+}
+
+function getDestinationAssetPathToUpdateDossier ( amd){
+
+    $('#check_box_dossier').click(function(){
+        if ($('#check_box_dossier').attr('checked')) {
+            //todo make asset path
+            //todo make metadata
+        }
+    })
+
+    return prop
+}
+
+function setAssetIDs(prop){
+    prop.getMetadata();
+    //todo set destAssetId
+}

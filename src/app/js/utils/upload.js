@@ -102,3 +102,28 @@ drop: function() {
 });
 
 });
+
+
+function loadUploadViaJqueryTool(mdPath){
+
+    var elvis_id;
+    doPost(mdPath);
+
+    function doPost(mdPath){
+//        alert("From inside of the testPost ");
+
+
+            var url ='/services/create?' + mdPath;
+//            var url ='http://localhost/testForm/samlpeForm/service.html'; //test version
+            var postField_ =  $('form#fileupload-form').serialize();
+            $.post( url, postField_ , function(data) {
+                    $( "#result").html(getSuccessMessageTemplate(data.id));
+                    elvis_id = data.id;
+//                    alert("Success poet Elvis id: " + data.id);
+                    return elvis_id;
+                },
+                'json' // I expect a JSON response
+            );
+    }
+
+}

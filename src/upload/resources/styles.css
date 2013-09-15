@@ -241,8 +241,8 @@
 div.file-list-box { clear: both; padding-top: 5px; }
 div.file-list-box p { padding: 0; margin: 5px 0; }
 
-div.progress-text-box { width: 350px; margin: 8px 0 0 14px; position: relative; min-height: 2em; }
-div.progress-text-box span.text { display: block; position: absolute; top: 0; left: 5px; width: 390px; overflow: hidden; line-height: 2em; height: 2em; overflow: hidden; }
+div.progress-text-box { width: 300px; margin: 8px 0 0 14px; position: relative; min-height: 2em; }
+div.progress-text-box span.text { display: block; position: absolute; top: 0; left: 5px; width: 320px; overflow: hidden; line-height: 2em; height: 2em; overflow: hidden; }
 body div.progress-text-message-box { height: auto; }
 body div.progress-text-message-box div { display: none !important; }
 body div.progress-text-message-box span.text { position: static; height: auto; line-height: 14px; padding: 5px; }

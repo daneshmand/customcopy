@@ -20,7 +20,6 @@ function setUpdateRelationStartProperties(prop){
 }
 
 function runUpdateRelationProcess(prop){
-    //todo Develop runUpdateRelationProcess
 
     prop = setLoadBarUpdateRelationInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);

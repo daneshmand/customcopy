@@ -13,7 +13,8 @@
 		<icon24Url>${pluginUrl}/images/icons/duplicate_icon24.png</icon24Url>
 
 		<userInterface>
-                        <dialog width="640" height="550"/>
+            <dialog width="640" height="550"/>
+            <!--<externalBrowser/>-->
 		</userInterface>
 
 		<menuAssignments>

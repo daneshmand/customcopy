@@ -120,3 +120,4 @@ function copyAssetOrFolderToElvisViaRest(src , dest){
 function addVariationToEnterpriseViaRest(){
 
 }
+

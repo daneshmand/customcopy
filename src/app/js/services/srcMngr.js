@@ -45,4 +45,3 @@ function setSrcPathError (prop){
     prop.src_path = getPathErrorHtmlTemplate("No source path is created!");
     return prop;
 }
-

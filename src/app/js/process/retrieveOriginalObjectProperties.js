@@ -2,6 +2,7 @@
 function retrieveOriginalObjectProperties(){
 
     setStartRetrieveOriginalObjectProperties(Properties);
+//    alert(JSON.stringify(Properties));
     return Properties
 }
 
@@ -11,7 +12,7 @@ function setStartRetrieveOriginalObjectProperties(prop){
     prop = setPropToDefault(prop);
 
     setView(prop);
-    Properties = prop;
+    //Properties = prop;// Ask it: do I need to remove this????
 
     clearTimeout(timeout);
     timeout = setTimeout(runInProcessRetrieveOriginalObjectProperties(prop),1000);
@@ -25,8 +26,10 @@ function runInProcessRetrieveOriginalObjectPropertiesLocal(prop){
     prop = setDestPath(prop,"/dog.jpg");
 
     setView(prop);
-    Properties = prop;
+    //loadUploadViaJqueryTool();
 
+    //Properties = prop;
+//    alert("runInProcessRetrieveOriginalObjectPropertiesLocal Properties:\n<br> "+JSON.stringify(Properties));
     clearTimeout(timeout);
     timeout = setTimeout(setEndRetrieveOriginalObjectProperties(prop),1000);
 }
@@ -39,10 +42,12 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
             prop = setPropToError(prop);
             setView(prop);
 
-            Properties = prop;
+            //Properties = prop;
             callbacks.disable();
 
         }else{
+
+//            alert("runInProcessRetrieveOriginalObjectProperties else started");
 
             var query = ElvisPlugin.queryForSelection(selectedHits);
             prop.nav_buttons = JSON.stringify(query);
@@ -53,11 +58,12 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
                 num: selectedHits.length
             }, function(data) {
                 amd = data.hits[0].metadata;
+//              alert("runInProcessRetrieveOriginalObjectProperties inside the callback");
 
                 prop = setPropToPreProcess(prop, amd);
-
+//                alert("After setPropToPreProcess Properties:\n<br> "+JSON.stringify(Properties));
                 setView(prop);
-                Properties = prop;
+                //Properties = prop;
 
                 clearTimeout(timeout);
                 timeout = setTimeout(setEndRetrieveOriginalObjectProperties(prop),3000);
@@ -68,8 +74,13 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
 
 function setEndRetrieveOriginalObjectProperties(prop){
 
+
     prop = setPropToPreProcessFinished(prop);
     setView(prop);
-    Properties = prop;
+
+
+
+    //Properties = prop;
+//    alert("setEndRetrieveOriginalObjectProperties: "+JSON.stringify(Properties));
     return prop;
 }
