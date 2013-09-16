@@ -1,8 +1,7 @@
 
-function updateCollection(Properties){
+function updateCollection(prop){
 
-    setUpdateCollectionStartProperties(Properties);
-    return Properties
+    setUpdateCollectionStartProperties(prop);
 
 }
 
@@ -12,45 +11,57 @@ function setUpdateCollectionStartProperties(prop){
     prop = setLoadBarUpdateCollectionStartProperties(prop);
 
     setView(prop);
-    Properties = prop;
-
-    clearTimeout(timeout);
-    timeout = setTimeout(runUpdateCollectionProcess(prop),5000);
-
+    //Properties = prop;
+    runUpdateCollectionProcess(prop);
 }
 
 function runUpdateCollectionProcess(prop){
 
     prop = setLoadBarUpdateCollectionInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
-
-    var originalElvisId = prop.srcAssetId;
-
-    elvisApi.search({
-        q: 'relatedTo:' + originalElvisId,
-        relationTarget: parent,
-        relationType: contains
-    }, function(data) {
-        for (var i=0; i<data.hits.length; i++) {
-            var collectionElvisId = data.hits[i].id;
-            setCollectionsViaRest(originalElvisId,collectionElvisId);
-        }
-    });
-
     setView(prop);
-    Properties = prop;
 
-    clearTimeout(timeout);
-    timeout = setTimeout(setUpdateCollectionEndProperties(prop),10000);
+    var originalElvisId = prop.getSrcAssetId();
+    var newElvisId = prop.getDestAssetId();
+        alert("runUpdateCollectionProcess originalElvisId: "+originalElvisId);
+        alert("runUpdateCollectionProcess newElvisId: "+newElvisId);
+    alert(originalElvisId);
+
+//    var elvisCollectionApi =  new ElvisAPI;
+
+//    alert ("elvisCollectionApi is generated");
+
+    if (Local_TEST_DEBUG){
+        setCollectionsViaRest(src_test_elvis_id,collection_testelvis_id);
+
+        //Properties = prop;
+        setUpdateCollectionEndProperties(prop)
+
+    }else{
+
+        elvisApi.search({
+            q: 'relatedTo:' + originalElvisId +' relationTarget:parent relationType:contains'
+        }, function(data) {
+            alert("collection, inside API, data hit length" + data.hits.length);
+
+            for (var i=0; i<data.hits.length; i++) {
+                alert("collection: "+data.hits[i].id);
+                var collectionElvisId = data.hits[i].id;
+                setCollectionsViaRest(collectionElvisId,newElvisId);
+            }
+            setUpdateCollectionEndProperties(prop)
+        });
+    }
 }
 
 function setUpdateCollectionEndProperties(prop){
 
-
+//    alert("setUpdateCollectionEndProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("setUpdateCollectionEndProperties getDestAssetId: "+prop.getDestAssetId());
 
     prop = setLoadBarUpdateCollectionFinishedProperties(prop);
     setView(prop);
-    Properties = prop;
-
-    return prop;
+    //Properties = prop;
+//    alert ("go for step 5 updateRelation");
+    updateRelation(prop);//step 4
 }

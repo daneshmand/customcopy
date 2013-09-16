@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+                   SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header>
+        <wsse:Security SOAP-ENV:mustUnderstand="1"
+                       xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            <wsse:UsernameToken>
+                <wsse:Username>...</wsse:Username>
+                <wsse:Password>...</wsse:Password>
+            </wsse:UsernameToken>
+        </wsse:Security>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <e:importRequest
+                xmlns:e="http://www.dutchsoftware.com/xmlns/elvis/webservice/1.0">
+            <i:importInstruction
+                    xmlns:i="http://www.dutchsoftware.com/xmlns/elvis/import/1.0"
+                    xmlns:q="http://www.dutchsoftware.com/xmlns/elvis/query/1.0">
+                <i:saveAsset localId="3">
+                    <i:file>
+                        <i:includeRef>cid:H34G-5L2K3KH52-3KHJ-G3254KL4</i:includeRef>
+                    </i:file>
+                    <i:identification>
+                        <i:field name="sceId">
+                            <i:value/>
+                        </i:field>
+                    </i:identification>
+                    <i:metadata>
+                        <i:field name="">
+                            <i:value/>
+                        </i:field>
+                    </i:metadata>
+                    <i:relations>
+                        <i:relation type="contained-by">
+                            <i:localAssetRef localId="2"/>
+                        </i:relation>
+                        <i:relation type="related">
+                            <i:query>
+                                ...
+                            </i:query>
+                        </i:relation>
+                        <i:relation type="contains">
+                            <i:metadata>
+                                <!-- metadata for relation,
+                                     for example 'rating' -->
+                            </i:metadata>
+                            <i:saveAsset>
+                                <i:metadata>
+                                    <!-- metadata for asset -->
+                                </i:metadata>
+                            </i:saveAsset>
+                        </i:relation>
+                    </i:relations>
+                </i:saveAsset>
+                <i:saveAsset>
+                    <i:file>
+                        <i:fileRef
+                                path="\\some-server\share-or-path\that-is\accessible-from\elvis-server.jpg"
+                                />
+                    </i:file>
+                    <i:identification/>
+                    <i:metadata>
+                        <i:field name="assetPath">
+                            <i:value>/Zone A/Publications/elvis-server.jpg</i:value>
+                        </i:field>
+                    </i:metadata>
+                </i:saveAsset>
+            </i:importInstruction>
+        </e:importRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

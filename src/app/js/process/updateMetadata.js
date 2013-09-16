@@ -1,9 +1,7 @@
 
-function updateMetadata(Properties){
+function updateMetadata(prop){
 
-    setUpdateMetadataStartProperties(Properties);
-    return Properties
-
+    setUpdateMetadataStartProperties(prop);
 
 }
 
@@ -13,7 +11,7 @@ function setUpdateMetadataStartProperties(prop){
 
     prop = setLoadBarUpdateMetadataStartProperties(prop);
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(runUpdateMetadataProcess(prop),5000);
@@ -27,13 +25,10 @@ function runUpdateMetadataProcess(prop){
     prop = setNavButtonsForDisable(prop);
 
 //    alert("runUpdateMetadataProcess Metadata:\n<br> "+JSON.stringify(prop.getMetadata()));
-//    alert("runUpdateMetadataProcess getSrcAssetId:\n<br> "+JSON.stringify(prop.getSrcAssetId()));
-//    alert("runUpdateMetadataProcess getDestAssetId:\n<br> "+JSON.stringify(prop.getDestAssetId()));
-
     // the task ahs be done at copyAsset process (need to set metadata before upload)
 
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(setUpdateMetadataEndProperties(prop),10000);
@@ -41,9 +36,12 @@ function runUpdateMetadataProcess(prop){
 
 function setUpdateMetadataEndProperties(prop){
 
+//    alert("setUpdateMetadataEndProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("setUpdateMetadataEndProperties getDestAssetId: "+prop.getDestAssetId());
+
     prop = setLoadBarUpdateMetadataFinishedProperties(prop);
     setView(prop);
-    Properties = prop;
-
-    return prop;
+    //Properties = prop;
+    alert ("go for step 4 updateCollection");
+    updateCollection(prop);//step 4
 }

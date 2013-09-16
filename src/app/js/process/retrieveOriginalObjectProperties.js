@@ -14,17 +14,19 @@ function setStartRetrieveOriginalObjectProperties(prop){
     setView(prop);
     //Properties = prop;// Ask it: do I need to remove this????
 
-    clearTimeout(timeout);
-    timeout = setTimeout(runInProcessRetrieveOriginalObjectProperties(prop),1000);
-//    timeout = setTimeout(runInProcessRetrieveOriginalObjectPropertiesLocal(prop),1000); //only for local test in browser (bypass elvis object)
+    if (Local_TEST_DEBUG){
+        runInProcessRetrieveOriginalObjectPropertiesLocal(prop)
+    }else{
+        runInProcessRetrieveOriginalObjectProperties(prop)
+    }
 }
 
 function runInProcessRetrieveOriginalObjectPropertiesLocal(prop){
 
 
-    prop = setSrcPath(prop,"/dog.jpg");
-    prop = setDestPath(prop,"/dog.jpg");
-
+    prop = setSrcPath(prop,src_test_assetPath);
+    prop = setDestPath(prop,dest_test_assetPath);
+    prop.srcAssetId = src_test_elvis_id;
     setView(prop);
     //loadUploadViaJqueryTool();
 
@@ -50,6 +52,7 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
 //            alert("runInProcessRetrieveOriginalObjectProperties else started");
 
             var query = ElvisPlugin.queryForSelection(selectedHits);
+//            alert (query);
             prop.nav_buttons = JSON.stringify(query);
 
             var amd;
@@ -57,9 +60,10 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
                 q: query,
                 num: selectedHits.length
             }, function(data) {
-                amd = data.hits[0].metadata;
-//              alert("runInProcessRetrieveOriginalObjectProperties inside the callback");
+                prop.srcAssetId = data.hits[0].id;
 
+                amd = data.hits[0].metadata;
+//                alert("runInProcessRetrieveOriginalObjectProperties hit: " + JSON.stringify(data.hits[0]));
                 prop = setPropToPreProcess(prop, amd);
 //                alert("After setPropToPreProcess Properties:\n<br> "+JSON.stringify(Properties));
                 setView(prop);
@@ -74,6 +78,8 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
 
 function setEndRetrieveOriginalObjectProperties(prop){
 
+//    alert("setEndRetrieveOriginalObjectProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("setEndRetrieveOriginalObjectProperties getDestAssetId: "+prop.getDestAssetId());
 
     prop = setPropToPreProcessFinished(prop);
     setView(prop);

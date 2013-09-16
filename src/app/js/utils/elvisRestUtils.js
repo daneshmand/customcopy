@@ -6,9 +6,35 @@
  * To change this template use File | Settings | File Templates.
  */
 function restPost(url){
+    var rest_response;
     $.post(url, function(data) {
-        rest_response = data;
+       rest_response = data;
     });
+
+//    function one(result) {
+//        var rest_response = result;
+//        alert(rest_response);
+//
+//        // Do anything you like
+//    }
+//
+//    function doJPost(url, callback) {
+//        $.post(url, function(data) {
+//
+//            result.addCallback(
+//                function (data)
+//                {
+//                    if (data != null)
+//                    {
+//                        callback(data);
+//                    }
+//                }
+//            );
+//        });
+//
+//    }
+//
+//    doJPost(url, function(result) { one(result); });
 
     return rest_response;
 }
@@ -87,23 +113,25 @@ function createAssetWithoutFileAndUpdateAMetadataViaRest(file , mdFieldName,mdFi
     return restPost(url)
 }
 
-function setCollectionsViaRest(originalElvisId , collectionElvisId){
+function setCollectionsViaRest(collectionElvisId, originalElvisId){
     var rest_response
     url = SERVER_BASE_URL + "services/createRelation?"
         + "relationType=contains"
         + "&target1Id=" + collectionElvisId
         + "&target2Id=" + originalElvisId
     ;
+    alert("collection url: "+url);
     return restPost(url)
 }
 
 function setRelationsViaRest(assetId , newAssetId){
     var rest_response
     url = SERVER_BASE_URL + "services/createRelation?"
-        + "relationType=variation-of"
+        + "relationType=variation"
         + "&target1Id=" +  assetId
         + "&target2Id=" +  newAssetId
     ;
+    alert("url: "+url);
 
     return restPost(url)
 }
@@ -117,7 +145,5 @@ function copyAssetOrFolderToElvisViaRest(src , dest){
     return restPost(url)
 }
 
-function addVariationToEnterpriseViaRest(){
 
-}
 

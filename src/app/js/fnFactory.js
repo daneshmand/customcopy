@@ -18,7 +18,7 @@ function startProcess() {
     callbacks.empty()
     callbacks.add( step2 );
     callbacks.fire(Properties);
-
+/*
     if (PLUGIN_TYPE != "NewVersion"){
 
         function step3(Properties) {
@@ -64,7 +64,7 @@ function startProcess() {
     }
     callbacks.empty()
     callbacks.add( step7 );
-    callbacks.fire(Properties);
+    callbacks.fire(Properties);*/
 };
 
 

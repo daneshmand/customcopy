@@ -1,8 +1,7 @@
 
-function updateRelation(Properties){
+function updateRelation(prop){
 
-    setUpdateRelationStartProperties(Properties);
-    return Properties
+    setUpdateRelationStartProperties(prop);
 
 }
 
@@ -12,7 +11,7 @@ function setUpdateRelationStartProperties(prop){
 
     prop = setLoadBarUpdateRelationStartProperties(prop);
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(runUpdateRelationProcess(prop),5000);
@@ -24,10 +23,13 @@ function runUpdateRelationProcess(prop){
     prop = setLoadBarUpdateRelationInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
 
+    alert("runUpdateRelationProcess getSrcAssetId: "+prop.getSrcAssetId());
+    alert("runUpdateRelationProcess getDestAssetId: "+prop.getDestAssetId());
+
     setRelationsViaRest(prop.getSrcAssetId(),prop.getDestAssetId());
 
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(setUpdateRelationEndProperties(prop),10000);
@@ -35,11 +37,12 @@ function runUpdateRelationProcess(prop){
 
 function setUpdateRelationEndProperties(prop){
 
-
+//    alert("setUpdateRelationEndProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("setUpdateRelationEndProperties getDestAssetId: "+prop.getDestAssetId());
 
     prop = setLoadBarUpdateRelationFinishedProperties(prop);
     setView(prop);
-    Properties = prop;
-
-    return prop;
+    //Properties = prop;
+    alert ("go for step 6 addVariationToEnterprise");
+    addVariationToEnterprise(prop);
 }

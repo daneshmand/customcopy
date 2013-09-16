@@ -66,3 +66,14 @@ var Duplicate_COLLECTION_DEFAULT = "checked";//checked, unchecked
 //please don't change after this line if you don't know what is it (they only works for development and debugging purpose):
 var MyTemp ="default"; //use only as a temporary global variable.
 var SERVER_BASE_URL = ELVIS_SERVER_BASE_URL + "/";
+
+//set app to test mode, only for variation
+var Local_TEST_DEBUG = false; //Don't forget change popup to browser at action.config.xml
+
+ var src_test_elvis_id = "4Bsou_OLqXE8MH7BLeT_bZ";
+var src_test_assetPath = "/Demo Zone/Images/Abstract/Stream.jpg";
+ var dest_test_elvis_id = "9xIsF6RX4gpBeoFE7HJ2AM";
+var dest_test_assetPath = "/Demo Zone/Images/Abstract/Wave Dark.jpg";
+var collection_testelvis_id = "30bBGrRb4FQBWcPP3Dv791";
+var collection_test_assetPath = "/Demo Zone/Images/Abstract/Waves.collection"
+

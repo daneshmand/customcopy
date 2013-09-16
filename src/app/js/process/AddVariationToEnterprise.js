@@ -1,8 +1,8 @@
 
-function addVariationToEnterprise(Properties){
+function addVariationToEnterprise(prop){
 
-    setAddVariationToEnterpriseStartProperties(Properties);
-    return Properties
+    setAddVariationToEnterpriseStartProperties(prop);
+    return prop
 
 }
 
@@ -12,7 +12,7 @@ function setAddVariationToEnterpriseStartProperties(prop){
 
     prop = setLoadBarAddVariationToEnterpriseStartProperties(prop);
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(runAddVariationToEnterpriseProcess(prop),5000);
@@ -26,10 +26,10 @@ function runAddVariationToEnterpriseProcess(prop){
     prop = setNavButtonsForDisable(prop);
 
     //Todo error handler should develop
-    addVariationToEnterpriseViaRest();
+    addVariationToEnterpriseViaRest(prop);
 
     setView(prop);
-    Properties = prop;
+    //Properties = prop;
 
     clearTimeout(timeout);
     timeout = setTimeout(setAddVariationToEnterpriseEndProperties(prop),10000);
@@ -37,11 +37,12 @@ function runAddVariationToEnterpriseProcess(prop){
 
 function setAddVariationToEnterpriseEndProperties(prop){
 
-
+//    alert("setAddVariationToEnterpriseEndProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("setAddVariationToEnterpriseEndProperties getDestAssetId: "+prop.getDestAssetId());
 
     prop = setLoadBarAddVariationToEnterpriseFinishedProperties(prop);
     setView(prop);
-    Properties = prop;
-
-    return prop;
+    //Properties = prop;
+    alert ("go for step 7 setLastView");
+    setLastView(prop);
 }

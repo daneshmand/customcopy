@@ -58,21 +58,21 @@ function getDestAssetPathForCreateAndUpdateMetadata(amd){
         var assetName = amd.filename;
         var folderPath =amd.folderPath;
         mdPath = 'metadata=' + JSON.stringify(amd);
-//        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...2...' + mdPath);
+//        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...mdPath...: ' + mdPath);
 
     }else{
 //        alert('amd.....getDestAssetPathForCr...else....');
         var assetName = amd.filename;
         var folderPath =amd.folderPath;
         mdPath = 'assetPath=' + folderPath +"/"+ assetName;
-//        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...3...' + mdPath);
+        alert('amd.....getDestAssetPathForCreateAndUpdateMetadata...3...' + mdPath);
 
     }
 
     return mdPath;
 }
 
-function getDestinationAssetPathToUpdateDossier ( amd){
+function isCheckedDossier ( amd){
 
     $('#check_box_dossier').click(function(){
         if ($('#check_box_dossier').attr('checked')) {

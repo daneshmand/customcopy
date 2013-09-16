@@ -104,26 +104,78 @@ drop: function() {
 });
 
 
-function loadUploadViaJqueryTool(mdPath){
+function loadUploadViaJqueryTool(mdPath, prop){
 
-    var elvis_id;
-    doPost(mdPath);
-
-    function doPost(mdPath){
+    doIt(mdPath, prop);
+    function doIt(mdPath, prop){
 //        alert("From inside of the testPost ");
+        alert("Elvis id = " + elvis_id_);
 
-
-            var url ='/services/create?' + mdPath;
-//            var url ='http://localhost/testForm/samlpeForm/service.html'; //test version
-            var postField_ =  $('form#fileupload-form').serialize();
-            $.post( url, postField_ , function(data) {
-                    $( "#result").html(getSuccessMessageTemplate(data.id));
-                    elvis_id = data.id;
-//                    alert("Success poet Elvis id: " + data.id);
-                    return elvis_id;
-                },
-                'json' // I expect a JSON response
-            );
+        if (Local_TEST_DEBUG){
+//            alert("Success Test Elvis id: " + dest_test_elvis_id);
+            $( "#result").html(getSuccessMessageTemplate(dest_test_elvis_id));
+            prop.destAssetId = dest_test_elvis_id;
+        }else{
+            prop.destAssetId = elvis_id_;
+        }
+        setView(prop);
+        setCopyAssetEndProperties(prop);
+            //var postField_ =  $('form#fileupload-form').serialize();
+//            $.post( url, postField_ , function(data) {
+//                    $( "#result").html(getSuccessMessageTemplate("- File uploaded & Elvis id is:"+data.id));
+//                    prop.destAssetId = data.id;
+//                    setView(prop);
+//                    setCopyAssetEndProperties(prop);
+////                    alert("Success poet Elvis id: " + data.id);
+//                },
+//                'json' // I expect a JSON response
+//            );
     }
 
 }
+/*
+
+function doSoapToElvis(endPointUrl, soapXML, successHandler) {
+    $.ajax({
+        url: endPointUrl,
+        data: soapXML,
+        type: "POST",
+        dataType: "xml",
+        success:  successHandler,
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("An error occurred: " + textStatus + ":\n" + errorThrown);
+        }
+    });
+}
+
+
+function uploadSoap() {
+    var reqXml = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SmartConnection">\n'+
+        '   <soap:Header/>\n'+
+        '   <soap:Body>\n'+
+        '      <urn:LogOn>\n'+
+        '         <User>'+USERNAME+'</User>\n'+
+        '         <Password>'+PASSWORD+'</Password>\n'+
+        '         <Ticket></Ticket>\n'+
+        '         <Server></Server>\n'+
+        '         <ClientName></ClientName>\n'+
+        '         <Domain></Domain>\n'+
+        '         <ClientAppName></ClientAppName>\n'+
+        '         <ClientAppVersion></ClientAppVersion>\n'+
+        '         <ClientAppSerial></ClientAppSerial>\n'+
+        '         <ClientAppProductKey></ClientAppProductKey>\n'+
+        '         <RequestTicket></RequestTicket>\n'+
+        '      </urn:LogOn>\n'+
+        '   </soap:Body>\n'+
+        '</soap:Envelope>';
+
+    doSoapToElvis(elvisEndpoint, reqXml, function(data, textStatus, jqXHR){
+        var xmlDoc = $.parseXML(jqXHR.responseText);
+        $xml = $(xmlDoc);
+        var ticket = $xml.find("Ticket").text();
+
+        // Retrieve the dossiers
+        getDossiers(ticket);
+    });
+}
+*/

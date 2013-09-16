@@ -1,0 +1,74 @@
+{
+"permissions" : "VPUMERXCD",
+"id" : "CqABxbRr4c1ATajdCVLQkP",
+"metadata" : {
+"widthPt" : 18648.0,
+"assetPropertyETag" : 1,
+"previewETag" : 1,
+"assetModified" : {
+"value" : 1379049054342,
+"formatted" : "2013-09-13 15:10:54 +1000"
+},
+"folderPath" : "/http/localhost/testForm/samlpeForm/upload.php",
+"assetCreated" : {
+"value" : 1379049054342,
+"formatted" : "2013-09-13 15:10:54 +1000"
+},
+"height" : 194,
+"assetType" : "jpg",
+"bitsPerSample" : "8",
+"mimeType" : "image/jpeg",
+"assetPath" : "/http/localhost/testForm/samlpeForm/upload.php/dog4.jpg",
+"resolutionX" : 1.0,
+"imageOrientation" : "Landscape",
+"assetFileModifier" : "smAdmin",
+"resolutionY" : 1.0,
+"width" : 259,
+"basicDataETag" : 1,
+"fileCreated" : {
+"value" : 1379049054000,
+"formatted" : "2013-09-13 15:10:54 +1000"
+},
+"resolutionUnit" : 0,
+"assetModifier" : "smAdmin",
+"versionETag" : 1,
+"fileModified" : {
+"value" : 1379049054000,
+"formatted" : "2013-09-13 15:10:54 +1000"
+},
+"versionNumber" : 1,
+"dimensionPt" : "18648 x 13968 pt",
+"resolution" : "1 px/inch",
+"dimensionMm" : "6579 x 4928 mm",
+"fileSize" : {
+"value" : 39545,
+"formatted" : "39 KB"
+},
+"heightPt" : 13968.0,
+"dimensionIn" : "259.00 x 194.00 inch",
+"name" : "dog4.jpg",
+"widthIn" : 259.0,
+"assetDomain" : "image",
+"assetFileModified" : {
+"value" : 1379049054342,
+"formatted" : "2013-09-13 15:10:54 +1000"
+},
+"originalDocumentId" : "xmp.did:e3c3928c-ad7c-4de7-a251-fe005560c0b4",
+"assetCreator" : "smAdmin",
+"fileType" : "JPEG",
+"heightIn" : 194.0,
+"instanceId" : "xmp.iid:e3c3928c-ad7c-4de7-a251-fe005560c0b4",
+"imageAspectRatio" : 1.3350515463917525,
+"widthMm" : 6578.599999999999,
+"metadataComplete" : "false",
+"extension" : "jpg",
+"dimension" : "259 x 194 px",
+"heightMm" : 4927.599999999999,
+"filename" : "dog4.jpg",
+"contentETag" : 1,
+"documentId" : "xmp.did:e3c3928c-ad7c-4de7-a251-fe005560c0b4"
+},
+"thumbnailUrl" : "http://localhost:8080/thumbnail/CqABxbRr4c1ATajdCVLQkP////dog4_thumb.jpg?_=1",
+"originalUrl" : "http://localhost:8080/file/CqABxbRr4c1ATajdCVLQkP////dog4.jpg?_=1",
+"previewUrl" : "http://localhost:8080/preview/CqABxbRr4c1ATajdCVLQkP/previews/maxWidth_1600_maxHeight_1600.jpg////dog4_preview.jpg?_=1"
+}
