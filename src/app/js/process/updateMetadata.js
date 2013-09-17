@@ -21,11 +21,20 @@ function setUpdateMetadataStartProperties(prop){
 function runUpdateMetadataProcess(prop){
     //todo Develop runUpdateMetadataProcess
 
-    prop = setLoadBarUpdateMetadataInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
 
 //    alert("runUpdateMetadataProcess Metadata:\n<br> "+JSON.stringify(prop.getMetadata()));
-    // the task ahs be done at copyAsset process (need to set metadata before upload)
+
+    if ($('#check_box_metadata').prop('checked')) {
+
+        var mdPath = updateAssetMetadata(prop);
+        prop = setLoadBarUpdateMetadataInProcessProperties(prop);
+
+    }else{
+        prop = setLoadBarProcessSkippedProperties(prop);
+
+    }
+//    alert("setUpdateMetadataEndProperties mdPath: "+ mdPath);
 
     setView(prop);
     //Properties = prop;
@@ -42,6 +51,6 @@ function setUpdateMetadataEndProperties(prop){
     prop = setLoadBarUpdateMetadataFinishedProperties(prop);
     setView(prop);
     //Properties = prop;
-    alert ("go for step 4 updateCollection");
+//    alert ("go for step 4 updateCollection");
     updateCollection(prop);//step 4
 }

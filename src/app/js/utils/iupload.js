@@ -31,11 +31,11 @@ function fileUpload(form, action_url, div_id) {
 
 
 var json_txt = content.substring(59,content.length -6);
-var elvis_id_ = JSON.parse(json_txt).id;
+ window.elvis_id_ = JSON.parse(json_txt).id;
 if (JSON.parse(json_txt).errorcode){
     document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(content.message);
 }else{
-    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Upload is done:<br><br>Elvis Asset Id: " + elvis_id_);
+    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Upload is successfuly done:<br>Id: " + window.elvis_id_);
 }
 
 

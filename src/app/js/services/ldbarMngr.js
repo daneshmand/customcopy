@@ -265,7 +265,33 @@ function setLoadBarUpdateMetadataFinishedProperties(prop){
     return prop;
 }
 
+function setLoadBarProcessSkippedProperties(prop){
 
+    var icon_ldbar = "images/loadbar/cloader.gif";
+    message_ldbar = message_ldbar + "<br>" + "- Based on setting the process is skipped.";
+
+    switch(PLUGIN_TYPE)
+    {
+        case "CustomCopy":
+            var title_ldbar = "Custom Copy in process";
+            prop.ldbar_html = getLdbarHtmlTemplate(title_ldbar,message_ldbar,icon_ldbar);break;
+
+        case "NewVersion":
+            var title_ldbar = "New Version in process";
+            prop.ldbar_html = getLdbarHtmlTemplate(title_ldbar,message_ldbar,icon_ldbar);break;
+        case "NewVariation":
+            var title_ldbar = "New Variation in process";
+            prop.ldbar_html = getLdbarHtmlTemplate(title_ldbar,message_ldbar,icon_ldbar);break;
+        case "Duplicate":
+            var title_ldbar = "Duplicate in process";
+            prop.ldbar_html = getLdbarHtmlTemplate(title_ldbar,message_ldbar,icon_ldbar);break;
+        default:
+            prop.ldbar_html = "<h2>Oops,</h2> <br>\n\
+    Some thing is wrong at your config or Message process, Please check PLUGIN_TYPE value at index page. \n\
+    The Type of plugin must be declared. Select one of these options: CustomCopy, NewVersion, NewVariation, or Duplicate.";
+    }
+    return prop;
+}
 function setLoadBarUpdateCollectionStartProperties(prop){
 
     var icon_ldbar = "images/loadbar/cloader.gif";

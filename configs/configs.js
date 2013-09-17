@@ -1,8 +1,7 @@
 // Main Configurations:
 
-var PLUGIN_TYPE = "NewVariation"; //CustomCopy,NewVersion,NewVariation,Duplicate
-var SERVER_FILESTORE_PATH = "c://test/customcopy/server";// no slash at the end
-var ELVIS_FILESTORE_PATH = "c://test/customcopy/server/elvis";// no slash at the end
+var PLUGIN_TYPE = "Duplicate"; //CustomCopy,NewVersion,NewVariation,Duplicate
+
 var ELVIS_SERVER_BASE_URL = ""; //no slash at the end, eg.: http://localhost:8080
 var enterpriseEndpoint = 'http://localhost/Enterprise822/index.php'; //no slash at the end
 var USERNAME = "smAdmin";
@@ -27,7 +26,7 @@ var PASSWORD = "Apple00";
 
 var CUSTOMCOPY_SRC = "upload";//asset, upload, [elvis, server, all]
 var CUSTOMCOPY_DEST = "elvis";//elvis, [all]
-var CUSTOMCOPY_METADATA = "enable";// enable, disable | enable to appear
+var CUSTOMCOPY_METADATA = "disable";// enable, disable | enable to appear
 var CUSTOMCOPY_METADATA_DEFAULT = "unchecked";//checked, unchecked
 var CUSTOMCOPY_DOSSIER = "enable";// enable, disable | enable to appear
 var CUSTOMCOPY_DOSSIER_DEFAULT = "checked";//checked, unchecked
@@ -36,9 +35,9 @@ var CUSTOMCOPY_COLLECTION_DEFAULT = "unchecked";//[checked, unchecked]
 
 var NewVersion_SRC = "upload";
 var NewVersion_DEST = "elvis";
-var NewVersion_METADATA = "asset";// enable, disable | enable to appear
+var NewVersion_METADATA = "disable";// enable, disable | enable to appear
 var NewVersion_METADATA_DEFAULT = "checked";//checked, unchecked
-var NewVersion_DOSSIER = "enable";// enable, disable | enable to appear
+var NewVersion_DOSSIER = "disable";// enable, disable | enable to appear
 var NewVersion_DOSSIER_DEFAULT = "checked";//checked, unchecked
 var NewVersion_COLLECTION = "disable";// enable, disable | enable to appear
 var NewVersion_COLLECTION_DEFAULT = "checked";//checked, unchecked
@@ -63,10 +62,11 @@ var Duplicate_COLLECTION_DEFAULT = "checked";//checked, unchecked
 
 // Development Configurations:
 
-//please don't change after this line if you don't know what is it (they only works for development and debugging purpose):
+//please don't change after this line if you don't know what are they (they only works for development and debugging purpose):
 var MyTemp ="default"; //use only as a temporary global variable.
 var SERVER_BASE_URL = ELVIS_SERVER_BASE_URL + "/";
-
+var SERVER_FILESTORE_PATH = "";// no slash at the end
+var ELVIS_FILESTORE_PATH = "";// no slash at the end
 //set app to test mode, only for variation
 var Local_TEST_DEBUG = false; //Don't forget change popup to browser at action.config.xml
 

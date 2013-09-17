@@ -104,25 +104,29 @@ drop: function() {
 });
 
 
-function loadUploadViaJqueryTool(mdPath, prop){
+function loadUploadViaJqueryTool(prop){
 
-    doIt(mdPath, prop);
-    function doIt(mdPath, prop){
-//        alert("From inside of the testPost ");
-        alert("Elvis id = " + elvis_id_);
+    doIt( prop);
+    function doIt( prop){
+//        alert("From inside of the loadUploadViaJqueryTool doIt ");
+//        alert("Elvis id = " + window.elvis_id_);
 
         if (Local_TEST_DEBUG){
 //            alert("Success Test Elvis id: " + dest_test_elvis_id);
             $( "#result").html(getSuccessMessageTemplate(dest_test_elvis_id));
             prop.destAssetId = dest_test_elvis_id;
         }else{
-            prop.destAssetId = elvis_id_;
+            prop.destAssetId = window.elvis_id_;
+//            alert("Elvis id Updated, prop.destAssetId= " + prop.getDestAssetId());
+
         }
         setView(prop);
+//        alert("Ready to go setCopyAssetEndProperties ");
+
         setCopyAssetEndProperties(prop);
             //var postField_ =  $('form#fileupload-form').serialize();
 //            $.post( url, postField_ , function(data) {
-//                    $( "#result").html(getSuccessMessageTemplate("- File uploaded & Elvis id is:"+data.id));
+//                    $( "#result").html(getSuccessMessageTemplate("- File uploaded & Elvis id is:"+data.idF));
 //                    prop.destAssetId = data.id;
 //                    setView(prop);
 //                    setCopyAssetEndProperties(prop);

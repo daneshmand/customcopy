@@ -39,7 +39,7 @@
 
 .elvisHitBox {
 	/* make hitBox higher so we can fit 2 metadata fields */
-	height: 170px;
+	height: 60px;/* 170 */
 }
 
 .videoDuration {
@@ -208,7 +208,7 @@
 
 #dropIndicator {
 	width: 320px;
-	min-height: 200px;
+	min-height: 75px;/* 200 */
 	padding-top: 10px;
 	margin: 6px;
 	border: transparent 4px solid;

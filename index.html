@@ -64,8 +64,10 @@ body, td, th {
 <script src='src/app/js/services/ldbarMngr.js'></script>
 <script src='src/app/js/services/titleMngr.js'></script>
 <script src='src/app/js/services/checkMngr.js'></script>
+<script src='src/app/js/services/amdMngr.js'></script>
 
-<script src='src/app/js/process/retrieveOriginalObjectProperties.js'></script>
+
+    <script src='src/app/js/process/retrieveOriginalObjectProperties.js'></script>
 <script src='src/app/js/process/copyAsset.js'></script>
 <script src='src/app/js/process/updateMetadata.js'></script>
 <script src='src/app/js/process/updateCollection.js'></script>
@@ -118,11 +120,14 @@ body, td, th {
 
 <!-- ------------------ Source Title Start -->
 <h4 style="color: white"><div class="title" id="title_src"></div></h4>
+<span style="color: #ffffff; font-style: italic; font-size: smaller ">
 <!-- ------------------ source tag start ------------------ -->
 <div class="content" id="src_path"></div>
 <!-- ------------------ source End ------------------ -->
+</span>
 
 <!-- ------------------ Check Boxes Start -->
+<!--
 <table  class="table_small" width="100%"  border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td height="12px"></td>
@@ -140,14 +145,44 @@ body, td, th {
             <tr>
                 <td class="table_cell_small_left_mid"></td>
                 <td class="table_cell_small_mid_mid">
+-->
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="12px"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td >
 
                     <!-- ------------------ checkbox tag start ------------------ -->
 
                     <div class="content" id="check_boxes"></div>
 
                     <!-- ------------------ checkbox tag End ------------------ -->
-
                 </td>
+                <td ></td>
+            </tr>
+                <tr>
+                    <td ></td>
+                    <td></td>
+                    <td ></td>
+                </tr>
+            </table></td>
+    </tr>
+    <tr>
+        <td ></td>
+    </tr>
+</table>
+<!--                </td>
                 <td class="table_cell_small_right_mid"></td>
             </tr>
             <tr>
@@ -160,8 +195,9 @@ body, td, th {
     <tr>
         <td class="table_cell_small_dwon"></td>
     </tr>
-</table>
+</table>-->
 <!-- ------------------ Check Boxes End -->
+
 <!-- ------------------  Navigation Buttons Start -->
 <table  width="100%" border="0" cellpadding="0" cellspacing="0" id=" ">
             <tr style="height: 40px;">

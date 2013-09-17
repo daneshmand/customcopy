@@ -7,32 +7,37 @@ function updateRelation(prop){
 
 function setUpdateRelationStartProperties(prop){
 
-    prop.step =  "copyAsset";
+    prop.step =  "updateRelation";
 
     prop = setLoadBarUpdateRelationStartProperties(prop);
     setView(prop);
     //Properties = prop;
 
-    clearTimeout(timeout);
-    timeout = setTimeout(runUpdateRelationProcess(prop),5000);
+    runUpdateRelationProcess(prop);
 
 }
 
 function runUpdateRelationProcess(prop){
 
-    prop = setLoadBarUpdateRelationInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
 
-    alert("runUpdateRelationProcess getSrcAssetId: "+prop.getSrcAssetId());
-    alert("runUpdateRelationProcess getDestAssetId: "+prop.getDestAssetId());
+//    alert("runUpdateRelationProcess getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("runUpdateRelationProcess getDestAssetId: "+prop.getDestAssetId());
 
-    setRelationsViaRest(prop.getSrcAssetId(),prop.getDestAssetId());
+    if ($('#check_box_metadata').prop('checked')) {
+
+        setRelationsViaRest(prop.getSrcAssetId(),prop.getDestAssetId());
+        prop = setLoadBarUpdateRelationInProcessProperties(prop);
+
+    }else{
+        prop = setLoadBarProcessSkippedProperties(prop);
+
+    }
 
     setView(prop);
     //Properties = prop;
 
-    clearTimeout(timeout);
-    timeout = setTimeout(setUpdateRelationEndProperties(prop),10000);
+    setUpdateRelationEndProperties(prop);
 }
 
 function setUpdateRelationEndProperties(prop){
@@ -43,6 +48,6 @@ function setUpdateRelationEndProperties(prop){
     prop = setLoadBarUpdateRelationFinishedProperties(prop);
     setView(prop);
     //Properties = prop;
-    alert ("go for step 6 addVariationToEnterprise");
+//    alert ("go for step 6 addVariationToEnterprise");
     addVariationToEnterprise(prop);
 }

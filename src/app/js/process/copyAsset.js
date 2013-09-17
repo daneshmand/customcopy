@@ -2,14 +2,14 @@
     function copyAsset(Properties){
 
         setCopyAssetStartProperties(Properties);
-        return Properties
-
+//        alert("copyAsset is started");
     }
 
     function setCopyAssetStartProperties(prop){
 
         prop.step =  "copyAsset";
         prop = setLoadBarCopyAssetStartProperties(prop);
+//        alert("setCopyAssetStartProperties is started");
 
         updateCheckBoxes(prop);
 
@@ -17,9 +17,7 @@
 
         setView(prop);
         //Properties = prop;
-
-        clearTimeout(timeout);
-        timeout = setTimeout(runCopyAssetProcess(prop),5000);
+        runCopyAssetProcess(prop);
 
     }
 
@@ -36,17 +34,25 @@
 
         }else if (PLUGIN_TYPE == "NewVersion"){
             // todo version copy: upload to elvis
-            var mdPath = getDestAssetPathForCreateAndUpdateMetadata(prop.getMetadata());
+//            alert("NewVersion process is started");
+
+
+//            var mdPath = getDestAssetPathForCreateAndUpdateMetadata(prop.getMetadata());
+//            alert("runCopyAssetProcess mdPath: " + mdPath);
             loadUploadViaJqueryTool(prop);
+            //
 
         }else if (PLUGIN_TYPE == "NewVariation"){
         // todo variation copy:  upload to elvis
-            if (Local_TEST_DEBUG){
-                var mdPath ="/Demo Zone/Images/Abstract/Stream.jpg";
-            }else{
-                var mdPath = getDestAssetPathForCreateAndUpdateMetadata(prop.getMetadata());
-            }
-            loadUploadViaJqueryTool(mdPath,prop);// set view and setCopyAssetEndProperties trigger will be done at upload.js
+//            if (Local_TEST_DEBUG){
+//                var mdPath ="/Demo Zone/Images/Abstract/Stream.jpg";
+//            }else{
+////                alert("NewVariation else is started");
+//                var mdPath = getDestAssetPathForCreateAndUpdateMetadata(prop.getMetadata());
+//            }
+////            alert("ready for upload via loadUploadViaJqueryTool");
+
+            loadUploadViaJqueryTool(prop);// set view and setCopyAssetEndProperties trigger will be done at upload.js
 
         }else if (PLUGIN_TYPE == "Duplicate"){
             // todo duplicate copy: Asset to elvis
@@ -73,10 +79,12 @@
     }
 
     function goStep3UpdateMetadata(prop){
-        if (PLUGIN_TYPE != "NewVersion"){
-//            alert ("go for step 3");
-            updateMetadata(prop);//step 3
-        }else{
-            setLastView(prop);//step 7 (last)
-        }
+
+        updateMetadata(prop);//step 3
+//        if (PLUGIN_TYPE != "NewVersion"){
+////            alert ("go for step 3");
+//            updateMetadata(prop);//step 3
+//        }else{
+//            setLastView(prop);//step 7 (last)
+//        }
     }
