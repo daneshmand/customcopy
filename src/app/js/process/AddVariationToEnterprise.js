@@ -9,8 +9,8 @@ function addVariationToEnterprise(prop){
 function setAddVariationToEnterpriseStartProperties(prop){
 
     prop.step =  "copyAsset";
-
     prop = setLoadBarAddVariationToEnterpriseStartProperties(prop);
+
     setView(prop);
     //Properties = prop;
 
@@ -22,11 +22,19 @@ function setAddVariationToEnterpriseStartProperties(prop){
 function runAddVariationToEnterpriseProcess(prop){
     //todo Develop runAddVariationToEnterpriseProcess
 
-    prop = setLoadBarAddVariationToEnterpriseInProcessProperties(prop);
     prop = setNavButtonsForDisable(prop);
 
-    //Todo error handler should develop
-    addVariationToEnterpriseViaRest(prop);
+
+    if ($('#check_box_dossier').prop('checked')) {
+
+        //Todo error handler should develop
+        addVariationToEnterpriseViaRest(prop);
+        prop = setLoadBarAddVariationToEnterpriseInProcessProperties(prop);
+
+    }else{
+        prop = setLoadBarProcessSkippedProperties(prop);
+
+    }
 
     setView(prop);
     //Properties = prop;
@@ -43,6 +51,6 @@ function setAddVariationToEnterpriseEndProperties(prop){
     prop = setLoadBarAddVariationToEnterpriseFinishedProperties(prop);
     setView(prop);
     //Properties = prop;
-    alert ("go for step 7 setLastView");
+//    alert ("go for step 7 setLastView");
     setLastView(prop);
 }

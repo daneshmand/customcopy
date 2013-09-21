@@ -1,12 +1,12 @@
 // Main Configurations:
 
-var PLUGIN_TYPE = "Duplicate"; //CustomCopy,NewVersion,NewVariation,Duplicate
+var PLUGIN_TYPE = "NewVariation"; //CustomCopy,NewVersion,NewVariation,Duplicate
 
 var ELVIS_SERVER_BASE_URL = ""; //no slash at the end, eg.: http://localhost:8080
 var enterpriseEndpoint = 'http://localhost/Enterprise822/index.php'; //no slash at the end
-var USERNAME = "smAdmin";
-var PASSWORD = "Apple00";
-
+var USERNAME = "smAdmin";//common user for elvis and enterprise
+var PASSWORD = "Apple00";//common pass for elvis and enterprise
+var ELVIS_3COL_DEFAULT_PATH = "/DAMtube";////no slash at the end, set "" for auto generate by elvis Based on date
 // Default Configurations:
 /*
     upload: an Upload function to let user to add new files from client syetm
@@ -28,7 +28,7 @@ var CUSTOMCOPY_SRC = "upload";//asset, upload, [elvis, server, all]
 var CUSTOMCOPY_DEST = "elvis";//elvis, [all]
 var CUSTOMCOPY_METADATA = "disable";// enable, disable | enable to appear
 var CUSTOMCOPY_METADATA_DEFAULT = "unchecked";//checked, unchecked
-var CUSTOMCOPY_DOSSIER = "enable";// enable, disable | enable to appear
+var CUSTOMCOPY_DOSSIER = "disable";// enable, disable | enable to appear
 var CUSTOMCOPY_DOSSIER_DEFAULT = "checked";//checked, unchecked
 var CUSTOMCOPY_COLLECTION = "disable";// [enable, disable | enable to appear]
 var CUSTOMCOPY_COLLECTION_DEFAULT = "unchecked";//[checked, unchecked]
@@ -43,7 +43,7 @@ var NewVersion_COLLECTION = "disable";// enable, disable | enable to appear
 var NewVersion_COLLECTION_DEFAULT = "checked";//checked, unchecked
 
 var NewVariation_SRC = "upload";
-var NewVariation_DEST = "elvis";
+var NewVariation_DEST = "same";
 var NewVariation_METADATA = "enable";// enable, disable | enable to appear
 var NewVariation_METADATA_DEFAULT = "checked";//checked, unchecked
 var NewVariation_DOSSIER = "enable";// enable, disable | enable to appear
@@ -55,7 +55,7 @@ var Duplicate_SRC = "asset";
 var Duplicate_DEST = "elvis";
 var Duplicate_METADATA = "enable";// enable, disable | enable to appear
 var Duplicate_METADATA_DEFAULT = "checked";//checked, unchecked
-var Duplicate_DOSSIER = "enable";// enable, disable | enable to appear
+var Duplicate_DOSSIER = "disable";// enable, disable | enable to appear
 var Duplicate_DOSSIER_DEFAULT = "checked";//checked, unchecked
 var Duplicate_COLLECTION = "disable";// enable, disable | enable to appear
 var Duplicate_COLLECTION_DEFAULT = "checked";//checked, unchecked
@@ -67,13 +67,14 @@ var MyTemp ="default"; //use only as a temporary global variable.
 var SERVER_BASE_URL = ELVIS_SERVER_BASE_URL + "/";
 var SERVER_FILESTORE_PATH = "";// no slash at the end
 var ELVIS_FILESTORE_PATH = "";// no slash at the end
+
 //set app to test mode, only for variation
 var Local_TEST_DEBUG = false; //Don't forget change popup to browser at action.config.xml
-
+var Local_TEST_DEBUG_variation = false;//only set variation to test mode
  var src_test_elvis_id = "4Bsou_OLqXE8MH7BLeT_bZ";
 var src_test_assetPath = "/Demo Zone/Images/Abstract/Stream.jpg";
- var dest_test_elvis_id = "9xIsF6RX4gpBeoFE7HJ2AM";
-var dest_test_assetPath = "/Demo Zone/Images/Abstract/Wave Dark.jpg";
-var collection_testelvis_id = "30bBGrRb4FQBWcPP3Dv791";
-var collection_test_assetPath = "/Demo Zone/Images/Abstract/Waves.collection"
+ var dest_test_elvis_id = "4eYwUaWQageA6Zt9rRrjha";
+var dest_test_assetPath = "/Demo Zone/Images/Abstract/Stream-1.jpg";
+var collection_testelvis_id = "FXlmSAOoq5hArN3_xNv85V";
+var collection_test_assetPath = "/Demo Zone/Images/Abstract/ramin.test.collection"
 

@@ -62,14 +62,38 @@ Properties.prototype = {
     },
     getDestAssetId: function(){
         return this.destAssetId;
+    },
+    asString: function () {
+    var result = "\n" +
+            " -  Step: " + this.getStep() + "\n" +
+            " -  Title: " + this.getTitle() + "\n" +
+            " -  Title_src: " + this.getTitle_src() + "\n" +
+            " -  Title_dest: " + this.getTitle_dest() + "\n" +
+            " -  Title_ldbar: " + this.getTitle_ldbar() + "\n" +
+            " -  Message_ldbar: " + this.getMessage_ldbar() + "\n" +
+            "-------------------------------------------------------\n" +
+//    " -  Icon_ldbar " + this.getIcon_ldbar() + "\n" +
+            " -  Nav_buttons: " + this.getNav_buttons() + "\n" +
+//    " -  Ldbar_html " + this.getLdbar_html() + "\n" +
+            " -  Check_boxes: " + this.getCheck_boxes() + "\n" +
+            " -  Check_box_dossier: " + this.getCheck_box_dossier() + "\n" +
+            " -  Check_box_collection: " + this.getCheck_box_collection() + "\n" +
+            " -  Check_box_metadata: " + this.getCheck_box_metadata() + "\n" +
+            "-------------------------------------------------------\n" +
+            " -  Dest_path: " + this.getDest_path() + "\n" +
+            " -  Src_path: " + this.getSrc_path() + "\n" +
+            "-------------------------------------------------------\n" +
+//    " -  Metadata " + this.getMetadata() + "\n" +
+            " -  SrcAssetId: " + this.getSrcAssetId() + "\n" +
+            " -  DestAssetId: " + this.getDestAssetId() + "\n"
+        ;
+    return result;
     }
 
 }
 
 
 var Properties = Object.create(Properties.prototype, {
-
-
 
     rawTitle: { writable: true, configurable:true, value: '' },
     title: {

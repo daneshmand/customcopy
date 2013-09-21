@@ -19,7 +19,7 @@ function updateAssetAllMetadataViaRest(assetId,amd){
     url = SERVER_BASE_URL + "services/update?"
             + "id=" + assetId
             + "&metadata=" + JSON.stringify(amd);
-//    alert("url: "+url);
+//    alert("updateAssetAllMetadataViaRest url: "+url);
 
     return restPost(url)
 }
@@ -30,7 +30,7 @@ function updateAssetMetadataViaRest(assetId,mdFieldName,mdFieldValue){
     url = SERVER_BASE_URL + "services/update?"
         + "id=" + assetId
         + "&" + mdFieldName + "=" + mdFieldValue
-//    alert(" url: "+url);
+//    alert("updateAssetMetadataViaRest url: "+url);
     return restPost(url)
 }
 
@@ -39,7 +39,7 @@ function updateAssetFileViaRest(assetId,file){
     url = SERVER_BASE_URL + "services/update?"
         + "id=" + assetId
         + "&Filedata=" + file;
-//    alert(" url: "+url);
+//    alert("updateAssetFileViaRest url: "+url);
     return restPost(url)
 }
 
@@ -48,7 +48,7 @@ function createAssetWithFileAndMetadataViaRest(file, amd){
     url = SERVER_BASE_URL + "services/create?"
         + "Filedata=" + file
         + "&metadata=" + amd;
-//    alert(" url: "+url);
+//    alert("createAssetWithFileAndMetadataViaRest url: "+url);
     return restPost(url)
 ;
 }
@@ -58,7 +58,7 @@ function createAssetWithFileOnlyViaRest(file){
     url = SERVER_BASE_URL + "services/create?"
         + "Filedata=" + file
     ;
-//    alert(" url: "+url);
+//    alert("createAssetWithFileOnlyViaRest url: "+url);
     return restPost(url)
 }
 
@@ -68,7 +68,7 @@ function createAssetWithFileAndUpdateAMetadataViaRest(file , mdFieldName,mdField
         + "Filedata="+ file
         + "&" + mdFieldName + "=" + mdFieldValue
     ;
-//    alert(" url: "+url);
+//    alert("createAssetWithFileAndUpdateAMetadataViaRest url: "+url);
     return restPost(url)
 }
 
@@ -77,7 +77,7 @@ function createAssetWithMetadataOnlyViaRest(amd){
     url = SERVER_BASE_URL + "services/create"
         + "&metadata=" + amd
     ;
-//    alert("collection url: "+url);
+//    alert("createAssetWithMetadataOnlyViaRest url: "+url);
     return restPost(url)
 }
 function createAssetWithoutFileAndUpdateAMetadataViaRest(file , mdFieldName,mdFieldValue){
@@ -85,7 +85,7 @@ function createAssetWithoutFileAndUpdateAMetadataViaRest(file , mdFieldName,mdFi
     url = SERVER_BASE_URL + "services/create?"
         mdFieldName + "=" + mdFieldValue
     ;
-//    alert(" url: "+url);
+//    alert("createAssetWithoutFileAndUpdateAMetadataViaRest url: "+url);
     return restPost(url)
 }
 
@@ -96,7 +96,7 @@ function setCollectionsViaRest(collectionElvisId, originalElvisId){
         + "&target1Id=" + collectionElvisId
         + "&target2Id=" + originalElvisId
     ;
-//    alert(" url: "+url);
+//    alert("setCollectionsViaRest url: "+url);
     return restPost(url)
 }
 
@@ -107,7 +107,7 @@ function setRelationsViaRest(assetId , newAssetId){
         + "&target1Id=" +  assetId
         + "&target2Id=" +  newAssetId
     ;
-//    alert("url: "+url);
+//    alert("setRelationsViaRest url: "+url);
 
     return restPost(url)
 }
@@ -118,7 +118,7 @@ function copyAssetOrFolderToElvisViaRest(src , dest){
        + "source=" +  src
        + "&target=" +  dest
        ;
-        alert("url: "+url);
+//        alert("copyAssetOrFolderToElvisViaRest url: "+url);
     return restPost(url)
 }
 

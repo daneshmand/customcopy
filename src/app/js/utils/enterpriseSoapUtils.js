@@ -7,18 +7,48 @@
  */
 function addVariationToEnterpriseViaRest(prop){
 
-    var assetId = prop.srcAssetId;
-    var variationAssetId = prop.destAssetId;
 
-    function doSoapCall(endPointUrl, soapXML, successHandler) {
+    if (Local_TEST_DEBUG || Local_TEST_DEBUG_variation){
+        var assetId = src_test_elvis_id;
+        var variationAssetId = dest_test_elvis_id;
+    }else{
+        var assetId = prop.getSrcAssetId();
+        var variationAssetId = prop.getDestAssetId();
+    }
+//    alert("addVariationToEnterpriseViaRest, assetId:"+assetId + "| variationAssetId:" + variationAssetId);
+
+    function doSoapCall(endPointUrl, soapXML ,successHandler/*,successHandler*/) {
         $.ajax({
             url: endPointUrl,
             data: soapXML,
             type: "POST",
             dataType: "xml",
-            success:  successHandler,
+            success:successHandler ,//successHandler,
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("An error occurred: " + textStatus + ":\n" + errorThrown);
+//                alert("An error occurred: " + textStatus + ":\n" + errorThrown);
+            }
+        });
+    }
+
+    function doSoapTest(endPointUrl, soapXML /*,successHandler*/) {
+//        alert("doSoapTest, endPointUrl:"+ endPointUrl);
+//        alert("doSoapTest, soapXML:"+ soapXML);
+
+        $.ajax({
+            url: endPointUrl,
+            data: soapXML,
+            type: "POST",
+            dataType: "xml",
+            beforeSend:function(){
+//                alert("beforeSend is start");
+            }  ,
+            success:function(){
+//                alert("success is start");
+//                alert ($.parseXML(jqXHR.responseText));
+            }  ,//successHandler,
+            error: function(jqXHR, textStatus, errorThrown) {
+//                alert("error is start");
+//                alert("An error occurred: " + textStatus + ":\n" + errorThrown);
             }
         });
     }
@@ -43,14 +73,20 @@ function addVariationToEnterpriseViaRest(prop){
             '   </soap:Body>\n'+
             '</soap:Envelope>';
 
+//        alert("login, logOnReq:"+logOnReq);
+//        alert("login, enterpriseEndpoint:"+enterpriseEndpoint);
+
+//        doSoapTest(enterpriseEndpoint, logOnReq);
         // Login to Enterprise
         doSoapCall(enterpriseEndpoint, logOnReq, function(data, textStatus, jqXHR) {
             var xmlDoc = $.parseXML(jqXHR.responseText);
             $xml = $(xmlDoc);
             var ticket = $xml.find("Ticket").text();
 
+//            alert("login, ticket:"+ticket);
+
             // Retrieve the dossiers
-            getDossiers(ticket);
+            //getDossiers(ticket);
         });
     }
 
@@ -69,6 +105,9 @@ function addVariationToEnterpriseViaRest(prop){
             '		</urn:GetObjects>\n'+
             '	</soap:Body>\n'+
             '</soap:Envelope>';
+
+//        alert("login, getObjectsReq:"+getObjectsReq);
+
 
         doSoapCall(enterpriseEndpoint, getObjectsReq, function(data, textStatus, jqXHR) {
             var xmlDoc = $.parseXML(jqXHR.responseText);
@@ -93,6 +132,7 @@ function addVariationToEnterpriseViaRest(prop){
     function addAssetToDossier(ticket, dossierId) {
 
         var enterpriseId = '_ELVIS_' + variationAssetId;
+//        alert("addAssetToDossier, enterpriseId:"+enterpriseId);
 
         var createObjectRelationsReq = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SmartConnection" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n'+
             '	<soap:Header/>\n'+
@@ -115,6 +155,8 @@ function addVariationToEnterpriseViaRest(prop){
             '		</urn:CreateObjectRelations>\n'+
             '	</soap:Body>\n'+
             '</soap:Envelope>';
+
+//        alert("addAssetToDossier, createObjectRelationsReq:"+createObjectRelationsReq);
 
         doSoapCall(enterpriseEndpoint, createObjectRelationsReq, function(data, textStatus, jqXHR) {
             var xmlDoc = $.parseXML(jqXHR.responseText);

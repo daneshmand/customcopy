@@ -3,13 +3,14 @@ function retrieveOriginalObjectProperties(){
 
     setStartRetrieveOriginalObjectProperties(Properties);
 //    alert(JSON.stringify(Properties));
-    return Properties
+//    return Properties
 }
 
 function setStartRetrieveOriginalObjectProperties(prop){
 
     prop.step =  "retrieveOriginalObjectProperties";
     prop = setPropToDefault(prop);
+//    alert("1. setStartRetrieveOriginalObjectProperties after setPropToDefault Prop:\n "+ prop.asString());
 
     setView(prop);
     //Properties = prop;// Ask it: do I need to remove this????
@@ -42,6 +43,8 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
         if (selectedHits.length == 0) {
 
             prop = setPropToError(prop);
+
+//            alert("2. runInProcessRetrieveOriginalObjectProperties after setPropToError Prop:\n "+ prop.asString());
             setView(prop);
 
             //Properties = prop;
@@ -65,12 +68,12 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
                 amd = data.hits[0].metadata;
 //                alert("runInProcessRetrieveOriginalObjectProperties hit: " + JSON.stringify(data.hits[0]));
                 prop = setPropToPreProcess(prop, amd);
-//                alert("After setPropToPreProcess Properties:\n<br> "+JSON.stringify(Properties));
+//                alert("After set Prop To PreProcess Properties:\n<br> "+JSON.stringify(prop));
                 setView(prop);
                 //Properties = prop;
 
-                clearTimeout(timeout);
-                timeout = setTimeout(setEndRetrieveOriginalObjectProperties(prop),3000);
+//                alert("3. runInProcessRetrieveOriginalObjectProperties after setPropToPreProcess Prop:\n "+ prop.asString());
+                setEndRetrieveOriginalObjectProperties(prop);
 
             });
         }
@@ -81,12 +84,12 @@ function setEndRetrieveOriginalObjectProperties(prop){
 //    alert("setEndRetrieveOriginalObjectProperties getSrcAssetId: "+prop.getSrcAssetId());
 //    alert("setEndRetrieveOriginalObjectProperties getDestAssetId: "+prop.getDestAssetId());
 
-    prop = setPropToPreProcessFinished(prop);
+    prop = setPropforGeneralView(prop);
     setView(prop);
 
+//    alert("4. setEndRetrieveOriginalObjectProperties Prop:\n "+ prop.asString());
 
 
     //Properties = prop;
-//    alert("setEndRetrieveOriginalObjectProperties: "+JSON.stringify(Properties));
     return prop;
 }

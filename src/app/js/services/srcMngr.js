@@ -7,6 +7,7 @@ function setSrcPathDefault (prop){
 
 function setSrcPath(prop, path){
 
+//    alert("Src setSrcPath is started " + path);
     switch(PLUGIN_TYPE)
     {
         case "CustomCopy":
@@ -26,10 +27,13 @@ function setSrcPath(prop, path){
         {
             case "upload":
                 prop.src_path = getUploadHtmlTemplate(Properties.dest_path);break;
+//                alert ("prop.src_path: upload" + prop.getSrc_path());
             case "server":
                 prop.src_path = getFolderHtmlTemplate(SERVER_FILESTORE_PATH);break;
             case "elvis":
                 prop.src_path = getFolderHtmlTemplate(ELVIS_FILESTORE_PATH);break;
+//                alert ("prop.src_path: elvis" + prop.getSrc_path());
+
             case "asset":
                 prop.src_path = getPathHtmlTemplate(SERVER_FILESTORE_PATH,path);break;
             case "all":

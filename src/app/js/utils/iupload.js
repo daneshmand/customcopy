@@ -35,7 +35,7 @@ var json_txt = content.substring(59,content.length -6);
 if (JSON.parse(json_txt).errorcode){
     document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(content.message);
 }else{
-    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Upload is successfuly done:<br>Id: " + window.elvis_id_);
+    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(window.elvis_id_);
 }
 
 
@@ -60,5 +60,5 @@ form.setAttribute("id", "fileupload-form");
 // Submit the form...
 form.submit();
 
-document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Uploading...");
+document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(" - Uploading...");
 }
