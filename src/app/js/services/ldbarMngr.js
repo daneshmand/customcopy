@@ -1,5 +1,6 @@
 var message_ldbar = "";
 function setLoadBarDefaultProperties(prop){
+//    alert("setLoadBarDefaultProperties PLUGIN_TYPE:\n<br> " + PLUGIN_TYPE );
 
     switch(PLUGIN_TYPE)
     {
@@ -63,6 +64,7 @@ function setLoadBarPreProcessProperties(prop){
 
 
 function setLoadBarPreProcessFinishedProperties(prop){
+//    alert("setLoadBarPreProcessFinishedProperties PLUGIN_TYPE: "+ PLUGIN_TYPE);
 
     message_ldbar = message_ldbar + "Cool, all required data is retrieved.";
 

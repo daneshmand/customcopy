@@ -1,5 +1,7 @@
 
 function setDestPathDefault (prop){
+//    alert("setDestPathDefault PLUGIN_TYPE:\n<br> " + PLUGIN_TYPE );
+
 
     prop.dest_path = ELVIS_3COL_DEFAULT_PATH;
 

@@ -1,6 +1,6 @@
 
 function setTitles(prop){
-//    alert("amd from setOriginalAssetMetadata: " +JSON.stringify(amd));
+//    alert("setTitles PLUGIN_TYPE: "+ PLUGIN_TYPE);
 
     switch(PLUGIN_TYPE)
     {

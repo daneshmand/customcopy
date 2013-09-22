@@ -1,5 +1,6 @@
 
 function setSrcPathDefault (prop){
+//    alert("setSrcPathDefault PLUGIN_TYPE: "+ PLUGIN_TYPE);
 
     prop.src_path = getPathErrorHtmlTemplate("No path has been defined yet!");
     return prop;

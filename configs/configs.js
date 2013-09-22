@@ -1,6 +1,6 @@
 // Main Configurations:
 
-var PLUGIN_TYPE = "NewVariation"; //CustomCopy,NewVersion,NewVariation,Duplicate
+var PLUGIN_TYPE = "CustomCopy"; //CustomCopy,NewVersion,NewVariation,Duplicate
 
 var ELVIS_SERVER_BASE_URL = ""; //no slash at the end, eg.: http://localhost:8080
 var enterpriseEndpoint = 'http://localhost/Enterprise822/index.php'; //no slash at the end
@@ -34,7 +34,7 @@ var CUSTOMCOPY_COLLECTION = "disable";// [enable, disable | enable to appear]
 var CUSTOMCOPY_COLLECTION_DEFAULT = "unchecked";//[checked, unchecked]
 
 var NewVersion_SRC = "upload";
-var NewVersion_DEST = "elvis";
+var NewVersion_DEST = "asset";
 var NewVersion_METADATA = "disable";// enable, disable | enable to appear
 var NewVersion_METADATA_DEFAULT = "checked";//checked, unchecked
 var NewVersion_DOSSIER = "disable";// enable, disable | enable to appear

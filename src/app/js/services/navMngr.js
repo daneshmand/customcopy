@@ -1,5 +1,7 @@
 
 function setNavButtons(prop){
+//    alert("setNavButtons PLUGIN_TYPE:\n<br> " + PLUGIN_TYPE );
+
     prop.nav_buttons = getLinkHtmlTemplate("startProcess(Properties)");
     return prop;
 }
