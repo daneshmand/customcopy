@@ -32,14 +32,22 @@ function fileUpload(form, action_url, div_id) {
 
 var json_txt = content.substring(59,content.length -6);
  window.elvis_id_ = JSON.parse(json_txt).id;
+
 if (JSON.parse(json_txt).errorcode){
     document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(content.message);
-}else{
-    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(window.elvis_id_);
+}
+else{
+    if(PLUGIN_TYPE == "NewVersion"){
+        var message = " - Asset is replaced";
+    }else{
+        var message = "id: "+window.elvis_id_;
+    }
+    document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(message);
+
 }
 
 
-//document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Upload is done:<br><br>Elvis Asset Id:" + content.substring(100,125));
+//document.getElementById(div_id).innerHTML = getSuccessMessageTemplate("<br> - Upload is done<br><br>Elvis Asset Id:" + content.substring(100,125));
 
 // Del the iframe...jQuery.parseJSON(content)
 setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
@@ -61,4 +69,5 @@ form.setAttribute("id", "fileupload-form");
 form.submit();
 
 document.getElementById(div_id).innerHTML = getSuccessMessageTemplate(" - Uploading...");
+
 }

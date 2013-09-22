@@ -12,29 +12,34 @@ function setSrcPath(prop, path){
     switch(PLUGIN_TYPE)
     {
         case "CustomCopy":
-            prop = selectTemplate(prop, path, CUSTOMCOPY_SRC );break;
+            prop = selectTemplate(prop, path, CUSTOMCOPY_SRC ,CUSTOMCOPY_DEST);break;
         case "NewVersion":
-            prop = selectTemplate(prop, path, NewVersion_SRC );break;
+            prop = selectTemplate(prop, path, NewVersion_SRC ,NewVersion_DEST);break;
         case "NewVariation":
-            prop = selectTemplate(prop, path, NewVariation_SRC );break;
+            prop = selectTemplate(prop, path, NewVariation_SRC ,NewVariation_DEST);break;
         case "Duplicate":
-            prop = selectTemplate(prop, path, Duplicate_SRC );break;
+            prop = selectTemplate(prop, path, Duplicate_SRC ,Duplicate_DEST);break;
     }
     return prop;
 
-    function selectTemplate(prop, path, type){
+    function selectTemplate(prop, path, type, destType){
         prop.src_path = getPathErrorHtmlTemplate("Wrong Configuration! Please check this variable at config file: "+ type );
         switch(type)
         {
             case "upload":
-                prop.src_path = getUploadHtmlTemplate(Properties.dest_path);break;
-//                alert ("prop.src_path: upload" + prop.getSrc_path());
+                if (destType == "asset" ){
+                    prop.src_path = getUpdateUploadHtmlTemplate(Properties.destAssetId);break;
+                }else if (destType == "elvis"){
+                    prop.src_path = getCreateUploadHtmlTemplate(Properties.dest_path);break;
+                }else if (destType == "same"){
+                    prop.src_path = getCreateUploadHtmlTemplate(Properties.dest_path);break;
+                }
+                alert ("prop.src_path: upload" + prop.getSrc_path());
             case "server":
                 prop.src_path = getFolderHtmlTemplate(SERVER_FILESTORE_PATH);break;
             case "elvis":
                 prop.src_path = getFolderHtmlTemplate(ELVIS_FILESTORE_PATH);break;
 //                alert ("prop.src_path: elvis" + prop.getSrc_path());
-
             case "asset":
                 prop.src_path = getPathHtmlTemplate(SERVER_FILESTORE_PATH,path);break;
             case "all":

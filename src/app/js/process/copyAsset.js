@@ -16,6 +16,8 @@
 //        alert(properties.getCheck_boxes());
 
         setView(prop);
+//        alert("B 1. setCopyAssetStartProperties after setView Prop:\n "+ prop.asString());
+
         //Properties = prop;
         runCopyAssetProcess(prop);
 
@@ -53,6 +55,7 @@
 ////            alert("ready for upload via loadUploadViaJqueryTool");
 
             loadUploadViaJqueryTool(prop);// set view and setCopyAssetEndProperties trigger will be done at upload.js
+//            alert("B 2. runCopyAssetProcess after setView Prop:\n "+ prop.asString());
 
         }else if (PLUGIN_TYPE == "Duplicate"){
             // todo duplicate copy: Asset to elvis
@@ -73,6 +76,8 @@
 
         prop = setLoadBarCopyAssetFinishedProperties(prop);
         setView(prop);
+//        alert("B 3. runCopyAssetProcess after setView Prop:\n "+ prop.asString());
+
         //Properties = prop;
 
         goStep3UpdateMetadata(prop)

@@ -33,32 +33,30 @@ function runInProcessRetrieveOriginalObjectPropertiesLocal(prop){
     prop = setSrcPath(prop,src_test_assetPath);
     prop = setDestPath(prop,dest_test_assetPath);
     prop.srcAssetId = src_test_elvis_id;
-    setView(prop);
-    //loadUploadViaJqueryTool();
 
-    //Properties = prop;
+    setView(prop);
 //    alert("2.1 runInProcessRetrieveOriginalObjectPropertiesLocal after setView,\n Prop:\n "+ prop.asString());
     setEndRetrieveOriginalObjectProperties(prop);
 }
 
 function runInProcessRetrieveOriginalObjectProperties(prop){
-//    alert("2.1 runInProcessRetrieveOriginalObjectProperties is started,\n Prop:\n "+ prop.asString());
+//    alert("A 2.1 runInProcessRetrieveOriginalObjectProperties is started,\n Prop:\n "+ prop.asString());
 
     var selectedHits = ElvisPlugin.resolveElvisContext().activeTab.assetSelection;
         if (selectedHits.length == 0) {
 
             prop = setPropToError(prop);
-//            alert("runInProcessRetrieveOriginalObjectProperties setPropToError if is started");
-//            alert("2.2 runInProcessRetrieveOriginalObjectProperties after setPropToError,\n Prop:\n "+ prop.asString());
+//            alert("A runInProcessRetrieveOriginalObjectProperties setPropToError if is started");
 
             setView(prop);
+//            alert("A 2 runInProcessRetrieveOriginalObjectProperties if setPropToError after setView,\n Prop:\n "+ prop.asString());
 
             //Properties = prop;
             callbacks.disable();
 
         }else{
 
-//            alert("runInProcessRetrieveOriginalObjectProperties setPropToPreProcess else is started");
+//            alert("A runInProcessRetrieveOriginalObjectProperties setPropToPreProcess else is started");
 
             var query = ElvisPlugin.queryForSelection(selectedHits);
 //            alert ("query: " + query);
@@ -70,18 +68,19 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
                 num: selectedHits.length
             }, function(data) {
                 prop.srcAssetId = data.hits[0].id;
+                prop.destAssetId = data.hits[0].id;
 
                 amd = data.hits[0].metadata;
-//                alert("runInProcessRetrieveOriginalObjectProperties after hit PLUGIN_TYPE: "+ PLUGIN_TYPE);
-//                alert("2.3 runInProcessRetrieveOriginalObjectProperties hit: " + JSON.stringify(data.hits[0]));
+//                alert("A runInProcessRetrieveOriginalObjectProperties after hit PLUGIN_TYPE: "+ PLUGIN_TYPE);
+//                alert("A 2.3 runInProcessRetrieveOriginalObjectProperties hit: " + JSON.stringify(data.hits[0]));
 
                 prop = setPropToPreProcess(prop, amd);
-//                alert("runInProcessRetrieveOriginalObjectProperties after setPropToPreProcess PLUGIN_TYPE: "+ PLUGIN_TYPE);
-//                alert("2.4 runInProcessRetrieveOriginalObjectProperties after setPropToPreProcess,\n Prop:\n "+ prop.asString());
+//                alert("A runInProcessRetrieveOriginalObjectProperties after setPropToPreProcess PLUGIN_TYPE: "+ PLUGIN_TYPE);
+//                alert("A 2.4 runInProcessRetrieveOriginalObjectProperties after setPropToPreProcess,\n Prop:\n "+ prop.asString());
 
                 setView(prop);
-//                alert("runInProcessRetrieveOriginalObjectProperties after setView PLUGIN_TYPE: "+ PLUGIN_TYPE);
-//                alert("2.5 runInProcessRetrieveOriginalObjectProperties after setView Prop:\n "+ prop.asString());
+//                alert("A runInProcessRetrieveOriginalObjectProperties after setView PLUGIN_TYPE: "+ PLUGIN_TYPE);
+//                alert("A 2.5 runInProcessRetrieveOriginalObjectProperties after setView Prop:\n "+ prop.asString());
 
                 setEndRetrieveOriginalObjectProperties(prop);
 
@@ -91,13 +90,13 @@ function runInProcessRetrieveOriginalObjectProperties(prop){
 
 function setEndRetrieveOriginalObjectProperties(prop){
 
-//    alert("setEndRetrieveOriginalObjectProperties getSrcAssetId: "+prop.getSrcAssetId());
-//    alert("setEndRetrieveOriginalObjectProperties getDestAssetId: "+prop.getDestAssetId());
+//    alert("A setEndRetrieveOriginalObjectProperties getSrcAssetId: "+prop.getSrcAssetId());
+//    alert("A setEndRetrieveOriginalObjectProperties getDestAssetId: "+prop.getDestAssetId());
 
     prop = setPropforGeneralView(prop);
-    setView(prop);
 
-//    alert("3. setEndRetrieveOriginalObjectProperties after all,\n Prop:\n "+ prop.asString());
+    setView(prop);
+//    alert("A 3. setEndRetrieveOriginalObjectProperties after all,\n Prop:\n "+ prop.asString());
 
 
     //Properties = prop;

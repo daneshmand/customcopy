@@ -1,6 +1,6 @@
 // Main Configurations:
 
-var PLUGIN_TYPE = "CustomCopy"; //CustomCopy,NewVersion,NewVariation,Duplicate
+var PLUGIN_TYPE = "Duplicate"; //CustomCopy,NewVersion,NewVariation,Duplicate
 
 var ELVIS_SERVER_BASE_URL = ""; //no slash at the end, eg.: http://localhost:8080
 var enterpriseEndpoint = 'http://localhost/Enterprise822/index.php'; //no slash at the end
@@ -25,7 +25,7 @@ var ELVIS_3COL_DEFAULT_PATH = "/DAMtube";////no slash at the end, set "" for aut
 //Features: "all" and "upload" options are planed for next phase!
 
 var CUSTOMCOPY_SRC = "upload";//asset, upload, [elvis, server, all]
-var CUSTOMCOPY_DEST = "elvis";//elvis, [all]
+var CUSTOMCOPY_DEST = "asset";//elvis, [all]
 var CUSTOMCOPY_METADATA = "disable";// enable, disable | enable to appear
 var CUSTOMCOPY_METADATA_DEFAULT = "unchecked";//checked, unchecked
 var CUSTOMCOPY_DOSSIER = "disable";// enable, disable | enable to appear
